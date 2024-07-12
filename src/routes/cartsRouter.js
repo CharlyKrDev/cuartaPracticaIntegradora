@@ -22,4 +22,7 @@ cartsRouterM.delete("/:cid/products/:pid", isAuthenticated, deleteProdCartContro
 
 //Borrar carrito del usuario
 cartsRouterM.delete("/:cid",isAuthenticated, deleteCartUserController);
+
+//Finalizar Compra
+cartsRouterM.get("/:cid/purchase")
 export default cartsRouterM;

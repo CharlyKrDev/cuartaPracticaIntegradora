@@ -1,0 +1,36 @@
+<main class="containerTicket">
+        <h1>Datos del ticket</h1>
+        <section>
+            <header>
+                Detalle del Carrito
+            </header>
+            <div>
+                {{#if cart.products.length}}
+                    <ul>
+                        {{#each cart.products}}
+                            <li>
+                                <div>
+                                    <h5 class="mb-1">{{product.name}}</h5>
+                                    <small>Cantidad: {{quantity}}</small>
+                                </div>
+                                <span>${{calculateSubtotal this.product.price this.quantity}}</span>
+                            </li>
+                        {{/each}}
+                    </ul>
+                    <a href="/carts/cart/{{cart._id}}">Volver al carrito</a>
+                    <br>
+                    <br>
+                    <br>
+                    <hr>
+                    <button>Confirmar - Recibir confirmación por email</button>
+                    <br>
+                    <hr>
+                    <footer>
+                        <button>Confirmar - Recibir confirmación por email y SMS</button>
+                    </footer>
+                {{else}}
+                    <p>No hay productos en el carrito.</p>
+                {{/if}}
+            </div>
+        </section>
+    </main>
