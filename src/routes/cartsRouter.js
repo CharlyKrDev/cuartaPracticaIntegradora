@@ -24,6 +24,6 @@ cartsRouterM.delete("/:cid/products/:pid", isAuthenticated, deleteProdCartContro
 cartsRouterM.delete("/:cid",isAuthenticated, deleteCartUserController);
 
 //Finalizar Compra
-cartsRouterM.get("/:cid/purchase", isAuthenticated, finalizePurchaseController);
+cartsRouterM.get("/:cid/purchase", isCartOwner, isAuthenticated, finalizePurchaseController);
 
 export default cartsRouterM;
