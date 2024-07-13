@@ -32,24 +32,24 @@ const hbs = handlebars.create({
 
   // Mailing
 
-  export const sendConfirmationEmail = async (user, purDetails, ticketCode) => {
-    const formattedDetails = purDetails.map(product => {
-        return `Producto: ${product.product.name}\nDescripción: ${product.product.description}\nPrecio unitario: $${product.product.price}\nCantidad: ${product.quantity}\n\n`
-    }).join('')
+  const sendConfirmationEmail = async (user, purchasedProducts, totalAmount, ticketCode) => {
+    const formattedDetails = purchasedProducts.map(product => {
+        return `Producto: ${product.title}\nDescripción: ${product.description}\nPrecio unitario: $${product.price}\nCantidad: ${product.quantity}\n\n`;
+    }).join('');
 
     const mailOptions = {
-        from: MAIL_USER,
+        from: process.env.MAIL_USER,
         to: user.email,
         subject: 'Detalle de tu compra',
-        text: `Hola ${user.first_name},\n\nGracias por tu compra. Aquí están los detalles del ticket: ${ticketCode}:\n\n${formattedDetails}\nSaludos,\nTu equipo de eCommerce`,
-    }
+        text: `Hola ${user.first_name},\n\nGracias por tu compra. Aquí están los detalles del ticket: ${ticketCode}:\n\n${formattedDetails}\nTotal: $${totalAmount}\n\nSaludos,\nTu equipo de eCommerce`,
+    };
 
     try {
-        await transporter.sendMail(mailOptions)
-        console.log('Correo de compra enviado')
+        await transporter.sendMail(mailOptions);
+        console.log('Correo de compra enviado');
     } catch (error) {
-        console.error('Error enviando el correo de compra:', error)
+        console.error('Error enviando el correo de compra:', error);
     }
-}
+};
 
-export { __dirname, viewsPath, publicPath, __filename, hbs, createHash, isValidPassword };
+export { __dirname, viewsPath, publicPath, __filename, hbs, createHash, isValidPassword, sendConfirmationEmail  };
