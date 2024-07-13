@@ -113,7 +113,7 @@ export const deleteCartUserController = async (req, res) => {
     cid = user.cart;
 
     const cart = await CartsDAO.deleteCart(cid);
-    await usersDAO.updateUserCart(user._id, null);
+    await usersDAO.updateUserCart(user._id, undefined); 
 
     res.status(200).json({ message: `Carrito ID: ${cid} borrado correctamente!` });
   } catch (error) {

@@ -1,0 +1,30 @@
+<button><a href="http://localhost:8080/products">Inicio</a></button>
+<button><a href="http://localhost:8080/carts/cart/{{cartId}}">Volver al Carrito</a></button>
+
+<h2>Resumen de Compra</h2>
+
+{{#if purchasedProducts.length}}
+  <h3>Productos Comprados:</h3>
+  {{#each purchasedProducts}}
+    <div>
+      <p>Producto: {{this.title}}</p>
+      <p>Cantidad: {{this.quantity}}</p>
+      <p>Precio: ${{this.price}}</p>
+      <p>Subtotal: ${{multiply this.quantity this.price}}</p>
+    </div>
+  {{/each}}
+  <h3>Total: ${{totalAmount}}</h3>
+{{else}}
+  <p>No se compraron productos.</p>
+{{/if}}
+
+{{#if productsOutOfStock.length}}
+  <h3>Productos no comprados por falta de stock:</h3>
+  {{#each productsOutOfStock}}
+    <div>
+      <p>Producto: {{this.title}}</p>
+      <p>Cantidad: {{this.quantity}}</p>
+      <p>Stock disponible: {{this.stock}}</p>
+    </div>
+  {{/each}}
+{{/if}}

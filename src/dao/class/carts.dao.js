@@ -5,6 +5,9 @@ class CartsDAO {
     return await cartsModel.find().lean();
   }
 
+  async getCartByIdSinLean(id) {
+    return await cartsModel.findById(id).populate('products.productId');
+  }
   async getCartById(id) {
     return await cartsModel.findById(id).populate('products.productId').lean();
   }
@@ -27,6 +30,7 @@ class CartsDAO {
 
     return await cart.save();
   }
+
   async addProductToCart(cartId, productId) {
     const cart = await cartsModel.findById(cartId);
     if (!cart) throw new Error('Cart not found');

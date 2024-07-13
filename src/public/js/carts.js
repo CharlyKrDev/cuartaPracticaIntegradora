@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const emptyCart = document.getElementById("emptyCart");
 
   if (emptyCart) {
-    // Agregar un event listener al botón para vaciar el carrito
     emptyCart.addEventListener("click", async () => {
       // Obtener el ID del carrito desde el atributo 'data-id' del botón
       const cartId = emptyCart.getAttribute("data-id");
@@ -43,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Obtener todos los botones para eliminar productos del carrito
   document.querySelectorAll(".deleteFromCart").forEach((button) => {
-    // Agregar un event listener a cada botón
     button.addEventListener("click", async (event) => {
       // Obtener el ID del producto desde el atributo 'data-id' del botón
       const productId = event.target.getAttribute("data-id");
@@ -87,4 +85,22 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  const purchaseButton = document.getElementById("purchaseButton");
+
+  if (purchaseButton) {
+    purchaseButton.addEventListener("click", async () => {
+      // Obtener el ID del carrito desde el atributo 'data-id' del botón
+      const cartId = purchaseButton.getAttribute("data-id");
+
+      try {
+        // Redirigir a la ruta de compra
+        window.location.href = `/carts/${cartId}/purchase`;
+      } catch (error) {
+        // Capturar y manejar cualquier error durante la solicitud
+        console.error("Error al finalizar la compra:", error);
+        alert("Error al finalizar la compra.");
+      }
+    });
+  }
 });

@@ -15,6 +15,7 @@
         <p>Precio: ${{this.productId.price}}</p>
     </section>
     <section class="infoProdCart">
+        <p>Stock: {{this.productId.stock}}</p>
         <p>Cantidad: {{this.quantity}}</p>
         <p>Sub Total:{{multiply this.quantity this.productId.price}}
         </p>
@@ -26,7 +27,7 @@
 
 </main>
 {{/each}}
-<section><button>comprar</button></section>
+<section><button id="purchaseButton" data-id="{{cart._id}}">Comprar</button></section>
 
 
 <script src="/socket.io/socket.io.js"></script>

@@ -2,7 +2,7 @@ import { Router } from "express";
 import { isAdminOrAdminMaster } from "../middleware/auth.js";
 import { isAuthenticated, isCartOwner } from "../middleware/auth.js";
 import { getCartsController, getCartsByIdController, createCartController, addProdCartController, deleteProdCartController, deleteCartUserController } from "../controllers/cartsControllers.js";
-
+import { finalizePurchaseController } from "../controllers/finalizePurchaseController.js";
 const cartsRouterM = Router();
 
 //Todos los carritos
@@ -24,5 +24,6 @@ cartsRouterM.delete("/:cid/products/:pid", isAuthenticated, deleteProdCartContro
 cartsRouterM.delete("/:cid",isAuthenticated, deleteCartUserController);
 
 //Finalizar Compra
-cartsRouterM.get("/:cid/purchase")
+cartsRouterM.get("/:cid/purchase", isAuthenticated, finalizePurchaseController);
+
 export default cartsRouterM;
