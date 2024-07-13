@@ -2,6 +2,7 @@ import CartsDAO from "../dao/class/carts.dao.js";
 import ProductsDAO from "../dao/class/products.dao.js";
 import usersDAO from "../dao/class/users.dao.js";
 import TicketRepository from "../repository/ticketRepository.js";
+import purchaseDetailModel from "../data/models/purchase.model.js";
 
 export const finalizePurchaseController = async (req, res) => {
   const cartId = req.params.cid;
@@ -11,7 +12,7 @@ export const finalizePurchaseController = async (req, res) => {
   let productsOutOfStock = [];
 
   try {
-    const cart = await CartsDAO.getCartByIdSinLean(cartId);
+    const cart = await CartsDAO.getCartByIdWithoutLean(cartId);
 
     if (!cart) {
       return res.status(404).json({ message: "Carrito no encontrado" });
@@ -42,7 +43,18 @@ export const finalizePurchaseController = async (req, res) => {
 
     // Crear ticket
     if (purchasedProducts.length > 0) {
-      const ticket = await TicketRepository.createTicket(totalAmount, req.user.email);
+      const ticket = await TicketRepository.createTicket({
+        amount: totalAmount,
+        purchaser: req.user.email // Asegurarse que el campo 'purchaser' está correctamente definido
+      });
+
+      // Crear detalles de compra
+      for (const product of purchasedProducts) {
+        await purchaseDetailModel.create({
+          ...product,
+          ticket: ticket._id
+        });
+      }
 
       // Agregar ticket al usuario
       const user = await usersDAO.findUserById(userId);
@@ -58,14 +70,6 @@ export const finalizePurchaseController = async (req, res) => {
     cart.products = productsOutOfStock;
     await cart.save();
 
-    console.log({
-        purchasedProducts,
-        productsOutOfStock,
-        totalAmount,
-        cartId,
-      });
-      
-
     res.render("purchaseSummary", {
       style: "style.css",
       purchasedProducts,
@@ -75,7 +79,7 @@ export const finalizePurchaseController = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("Error al finalizar la compra:", error); // Añadir log detallado
+    console.error("Error al finalizar la compra:", error);
     res.status(500).json({ message: "Error al finalizar la compra", error });
   }
 };

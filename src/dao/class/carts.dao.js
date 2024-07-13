@@ -5,7 +5,7 @@ class CartsDAO {
     return await cartsModel.find().lean();
   }
 
-  async getCartByIdSinLean(id) {
+  async getCartByIdWithoutLean(id) {
     return await cartsModel.findById(id).populate('products.productId');
   }
   async getCartById(id) {

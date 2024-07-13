@@ -18,7 +18,11 @@ const ticketSchema = new mongoose.Schema({
     purchaser: {
         type: String,
         required: true,
-    }
+    },
+    purchaseDetails: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PurchaseDetail'
+    }]
 }, { timestamps: true })
 
 const ticketModel = mongoose.model('Ticket', ticketSchema)
