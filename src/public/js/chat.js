@@ -1,6 +1,6 @@
 const socket = io();
 
-//Gestión de mensajes y su envió por socket!
+// Gestión de mensajes y su envío por socket!
 
 document.addEventListener("DOMContentLoaded", function () {
   const btnSendMessage = document.getElementById("btnSendMessage");

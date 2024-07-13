@@ -52,6 +52,16 @@ export const isCartOwner = async (req, res, next) => {
 };
 
 // Role
+
+export const isUser = (req, res, next) => {
+  const userRole = req.user.role;
+
+  if (userRole === "user") {
+    return next();
+  } else {
+    return res.redirect("/404");
+  }
+};
 export const isAdminOrAdminMaster = (req, res, next) => {
   const userRole = req.user.role;
 

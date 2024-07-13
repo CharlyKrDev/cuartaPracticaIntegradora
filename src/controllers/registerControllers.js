@@ -8,7 +8,7 @@ export const renderLogin = (req, res) => {
   
   export const renderCurrent = (req, res) => {
     const userRole =  req.session.user.role
-    res.render("current", { user: req.session.user, role: userRole ==="admin" || userRole==="adminMaster"
+    res.render("current", { user: req.session.user, roleUser: userRole === "user", roleAdmin: userRole ==="admin" || userRole==="adminMaster"
       , style: "style.css" });
   };
   

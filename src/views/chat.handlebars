@@ -2,18 +2,16 @@
   <form action="" class="chatForm">
     <h2>Formulario de contacto</h2>
 
-    <label for="userMail">Mail de contacto:
-    </label>
+    <label for="userMail">Mail de contacto:</label>
+    <p>{{email}}</p>
     <input
-      class="chatInput"
-      type="text"
+      type="hidden"
       name="userEmail"
-      required
       id="userMail"
-      placeholder="Ingrese su E-mail"
+      value="{{email}}"
     />
-    <label for="chatMessage">Mensaje:
-    </label>
+
+    <label for="chatMessage">Mensaje:</label>
     <textarea
       class="chatText"
       id="chatMessage"

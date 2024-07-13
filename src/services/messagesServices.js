@@ -6,13 +6,17 @@ export const connectionMessages = (socketServer) => async (socket) => {
           if (!message || !user) {
             return;
           }
+
+          // Agregar la fecha al mensaje
+          const messageWithDate = `${message} - ${new Date().toLocaleString()}`;
+
           const existingUser = await MessagesDAO.existingUser(user);
           if (existingUser) {
-            existingUser.messages.push(message);
+            existingUser.messages.push(messageWithDate);
             await existingUser.save();
             socketServer.emit('message', existingUser.messages);
           } else {
-            const newUser = await MessagesDAO.createMessages( user,message);
+            const newUser = await MessagesDAO.createMessages(user, messageWithDate);
             socketServer.emit('message', newUser.messages);
           }
         });
@@ -21,7 +25,3 @@ export const connectionMessages = (socketServer) => async (socket) => {
         socket.emit("error", { message: "Error al procesar la solicitud" });
       }
 };
-
-
-
-

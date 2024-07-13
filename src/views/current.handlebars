@@ -2,12 +2,12 @@
 <main class="containerCurrent">
 
     <aside class="btnCurrent">
+        {{#if roleUser}}
+        <button style="margin-top:30px"><a href="http://localhost:8080/messages/">Atención por chat</a></button>
         <button><a href="http://localhost:8080/carts/cart/{{user.cart}}">Ver mi carrito</a></button>
-        {{#if role}}
-        <button><a href="http://localhost:8080/dashBoardProducts">Editar productos</a></button>
-        <button><a href="http://localhost:8080/carts">Ver carritos</a></button>
-        <button id="createCart">Crear carrito</button>
-
+        {{/if}}
+        {{#if roleAdmin}}
+        <button><a href="http://localhost:8080/dashBoardProducts">Panel de administrador</a></button>
         {{/if}}
 
 
