@@ -6,8 +6,8 @@
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "lse3",
     "stock": 10,
-    "status": true,
-    "id": 1
+    "category": "Almacén",
+    "status": true
   },
   {
     "title": "La serenisima",
@@ -16,8 +16,8 @@
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "lse1",
     "stock": 10,
-    "status": true,
-    "id": 2
+    "category": "Almacén",
+    "status": true
   },
   {
     "title": "La serenisima",
@@ -26,8 +26,8 @@
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "ls55",
     "stock": 10,
-    "status": true,
-    "id": 3
+    "category": "Almacén",
+    "status": true
   },
   {
     "title": "La campagnola",
@@ -36,8 +36,8 @@
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "ls56",
     "stock": 5,
-    "status": true,
-    "id": 4
+    "category": "Almacén",
+    "status": true
   },
   {
     "title": "Taragui",
@@ -46,8 +46,8 @@
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "YMT500GC22",
     "stock": 5,
-    "status": true,
-    "id": 5
+    "category": "Almacén",
+    "status": true
   },
   {
     "title": "Capitan del espacio",
@@ -56,8 +56,8 @@
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "alfcap1",
     "stock": 10,
-    "status": true,
-    "id": 6
+    "category": "Almacén",
+    "status": true
   },
   {
     "title": "La serenisima",
@@ -66,8 +66,8 @@
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "Dlse1",
     "stock": 10,
-    "status": true,
-    "id": 7
+    "category": "Almacén",
+    "status": true
   },
   {
     "title": "Coca-Cola",
@@ -76,8 +76,8 @@
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "CC2lts",
     "stock": 10,
-    "status": true,
-    "id": 8
+    "category": "Almacén",
+    "status": true
   },
   {
     "title": "Pepsi",
@@ -86,8 +86,8 @@
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "lssssssses3",
     "stock": 5,
-    "status": true,
-    "id": 9
+    "category": "Almacén",
+    "status": true
   },
   {
     "title": "Havanna",
@@ -95,9 +95,8 @@
     "price": 22500,
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "lssssssses3",
-    "stock": 5,
-    "status": true,
-    "id": 10
+    "category": "Almacén",
+    "stock": 5,    "status": true
   },
   {
     "title": "La nonna",
@@ -106,8 +105,8 @@
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "Lnpf200",
     "stock": 5,
-    "status": true,
-    "id": 11
+    "category": "Almacén",
+    "status": true
   },
   {
     "title": "Havanna",
@@ -116,64 +115,7 @@
     "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
     "code": "Hvanet",
     "stock": 5,
-    "status": true,
-    "id": 12
-  },
-  {
-    "title": "asdasd",
-    "description": "asda",
-    "code": "asd",
-    "price": "12312",
-    "status": true,
-    "stock": "4",
-    "category": "casc",
-    "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
-    "id": 13
-  },
-  {
-    "title": "asdasd",
-    "description": "asda",
-    "code": "asdasdas",
-    "price": "12312",
-    "status": true,
-    "stock": "4",
-    "category": "casc",
-    "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
-    "id": 14
-  },
-  {
-    "title": "asd",
-    "description": "asd",
-    "code": "asdasdas123123",
-    "price": "12312",
-    "status": true,
-    "stock": "12312",
-    "category": "casc",
-    "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
-    "id": 15
-  },
-  {
-    "title": "asd",
-    "description": "asd",
-    "code": "asdasdas123123asdasd",
-    "price": "12312",
-    "status": true,
-    "stock": "12312",
-    "category": "casc",
-    "thumbnail": "https://cdn-icons-png.flaticon.com/512/1554/1554591.png",
-    "id": 16
-  },
-  {
-    "title": "sadsasd",
-    "description": "asdasda",
-    "code": "GALICIA_CODER",
-    "price": "312312",
-    "status": true,
-    "stock": "12312",
-    "category": "asd",
-    "thumbnail": [
-      "https://cdn-icons-png.flaticon.com/512/1554/1554591.png"
-    ],
-    "id": 17
+    "category": "Almacén",
+    "status": true
   }
 ]
