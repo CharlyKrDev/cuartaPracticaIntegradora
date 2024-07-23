@@ -66,13 +66,14 @@ export const finalizePurchaseController = async (req, res) => {
       await ticket.save();
 
       // Agregar ticket al usuario
-      const user = await usersDAO.findUserById(userId);
+      let user = await usersDAO.findUserById(userId);
       if (!user) {
         throw new Error("Usuario no encontrado");
       }
       user.tickets = user.tickets || [];
       user.tickets.push(ticket._id);
-      await user.save();
+      
+      await usersDAO.updateUser(userId, { tickets: user.tickets });
 
       // Enviar correo de confirmación
       await sendConfirmationEmail(
