@@ -1,29 +1,38 @@
-import userModel from "../../data/models/user.model.js"
+import userModel from "../../data/models/user.model.js";
+import UserDTO from "../../dto/user.dto.js";
 
 class UsersDAO {
   async getUserByEmail(email) {
-    return await userModel.findOne({ email });
-  }
-  async findUserByOne(id) {
-    return await userModel.findOne({ _id:id });
+    const user = await userModel.findOne({ email }).lean();
+    return user ? new UserDTO(user) : null;
   }
 
+  async findUserByOne(id) {
+    const user = await userModel.findOne({ _id: id }).lean();
+    return user ? new UserDTO(user) : null;
+  }
 
   async createNewUser(newUser) {
-    return await userModel.create(newUser);
+    const user = await userModel.create(newUser);
+    return new UserDTO(user);
   }
 
   async updateUserCart(userId, cartId) {
-    return await userModel.updateOne({ _id: userId }, { cart: cartId });
+    await userModel.updateOne({ _id: userId }, { cart: cartId });
+    const user = await userModel.findById(userId).lean();
+    return user ? new UserDTO(user) : null;
   }
 
   async updateUser(userId, updateData) {
-    return await userModel.updateOne({ _id: userId }, updateData);
+    await userModel.updateOne({ _id: userId }, updateData);
+    const user = await userModel.findById(userId).lean();
+    return user ? new UserDTO(user) : null;
   }
-  
-  async findUserById (userId) {
-    return await userModel.findById(userId);
-}
+
+  async findUserById(userId) {
+    const user = await userModel.findById(userId).lean();
+    return user ? new UserDTO(user) : null;
+  }
 }
 
 export default new UsersDAO();

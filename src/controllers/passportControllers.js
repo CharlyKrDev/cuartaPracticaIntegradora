@@ -19,7 +19,7 @@ export const registerPassportController = async (req, username, password, done) 
       email,
       age,
       password: createHash(password),
-      cart: newCart._id
+      cart: newCart.id
     };
 
     let result = await UsersDAO.createNewUser(newUser);
@@ -35,7 +35,6 @@ export const passportGithubController = async (accessToken, refreshToken, profil
     if (!user) {
       let newCart = await CartsDAO.createCart({ products: [] });
 
-
       let newUser = {
         first_name: profile._json.name,
         last_name: "",
@@ -43,7 +42,7 @@ export const passportGithubController = async (accessToken, refreshToken, profil
         email: profile._json.email,
         password: "",
         role: "user",
-        cart: newCart._id
+        cart: newCart.id
       };
 
       let result = await UsersDAO.createNewUser(newUser);
@@ -52,7 +51,7 @@ export const passportGithubController = async (accessToken, refreshToken, profil
       if (!user.cart) {
         let newCart = await CartsDAO.createCart();
 
-        await UsersDAO.updateUserCart(user._id, newCart._id);
+        await UsersDAO.updateUserCart(user.id, newCart.id);
       }
       done(null, user);
     }
@@ -66,25 +65,24 @@ export const loginPassportController = async (username, password, done) => {
     const user = await UsersDAO.getUserByEmail(username);
     if (!user) {
       console.log("El usuario no existe");
-      return done(null, false); 
+      return done(null, false);
     }
 
     if (!user.cart) {
       const newCart = await CartsDAO.createCart();
-
       await UsersDAO.updateUserCart(user._id, newCart._id);
-
       const updatedUser = await UsersDAO.findUserById(user._id);
 
       if (!isValidPassword(updatedUser, password)) {
-        return done(null, false); 
+        return done(null, false);
       }
       return done(null, updatedUser);
     }
 
     if (!isValidPassword(user, password)) {
-      return done(null, false); 
+      return done(null, false);
     }
+
     return done(null, user);
   } catch (error) {
     return done(error);

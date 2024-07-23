@@ -38,7 +38,7 @@ const hbs = handlebars.create({
     }).join('');
 
     const mailOptions = {
-        from: process.env.MAIL_USER,
+        from: MAIL_USER,
         to: user.email,
         subject: 'Detalle de tu compra',
         text: `Hola ${user.first_name},\n\nGracias por tu compra. Aquí están los detalles del ticket: ${ticketCode}:\n\n${formattedDetails}\nTotal: $${totalAmount}\n\nSaludos,\nTu equipo de eCommerce`,

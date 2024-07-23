@@ -8,7 +8,7 @@ import {
   deleteCartUserApiController,
 } from "../../controllers/cartsApiControllers.js";
 import { isAdminOrAdminMaster } from "../../middleware/auth.js";
-import { isAuthenticated } from "../../middleware/auth.js";
+import { isAuthenticated, isCartOwner } from "../../middleware/auth.js";
 
 const cartsRouterApiM = Router();
 
@@ -22,16 +22,16 @@ cartsRouterApiM.get(
 );
 
 // Obtener un carrito por ID
-cartsRouterApiM.get("/:cid", getCartsApiByIdController);
+cartsRouterApiM.get("/cart/:cid", isCartOwner, getCartsApiByIdController);
 
 // Crear un nuevo carrito
-cartsRouterApiM.post("/", createCartApiController);
+cartsRouterApiM.post("/",isAuthenticated,isCartOwner, createCartApiController);
 
 // Agregar producto al carrito
-cartsRouterApiM.put("/:cid/products/:pid", addProdCartApiController);
+cartsRouterApiM.put("/:cid/products/:pid",isAuthenticated, addProdCartApiController);
 
 //Borrar producto del carrito
-cartsRouterApiM.delete("/:cid/products/:pid", deleteProdCartApiController);
+cartsRouterApiM.delete("/:cid/products/:pid",isAuthenticated, deleteProdCartApiController);
 
 //Borrar carrito
 cartsRouterApiM.delete("/:cid", deleteCartUserApiController);

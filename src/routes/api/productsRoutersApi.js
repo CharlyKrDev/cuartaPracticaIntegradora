@@ -6,10 +6,13 @@ import {
   addProductApi,
   updateProductApi,
 } from "../../controllers/productsControllers.js";
+import { isAdminOrAdminMaster } from "../../middleware/auth.js";
+import { isAuthenticated, isCartOwner } from "../../middleware/auth.js";
+
 export const productsRouterApi = express.Router();
 
 productsRouterApi.get("/", getProductsApi);
-productsRouterApi.get("/:pid", getProductByIdApi);
-productsRouterApi.delete("/:pid", deleteProductByIdApi);
-productsRouterApi.put("/:pid", addProductApi);
-productsRouterApi.post("/", updateProductApi);
+productsRouterApi.get("/:pid", isAuthenticated, getProductByIdApi);
+productsRouterApi.delete("/:pid", isAuthenticated, isAdminOrAdminMaster, deleteProductByIdApi);
+productsRouterApi.put("/:pid", isAuthenticated, isAdminOrAdminMaster,  addProductApi);
+productsRouterApi.post("/",isAuthenticated, isAdminOrAdminMaster,updateProductApi);

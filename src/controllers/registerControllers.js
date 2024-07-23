@@ -8,8 +8,9 @@ export const renderLogin = (req, res) => {
   
   export const renderCurrent = (req, res) => {
     const userRole =  req.session.user.role
+    const userCart = req.session.user.cart
     res.render("current", { user: req.session.user, roleUser: userRole === "user", roleAdmin: userRole ==="admin" || userRole==="adminMaster"
-      , style: "style.css" });
+      , cart: userCart !== null , style: "style.css" });
   };
   
 

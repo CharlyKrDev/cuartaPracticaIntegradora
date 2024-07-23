@@ -16,7 +16,7 @@ cartsRouterM.get("/cart/:cid", isCartOwner, getCartsByIdController);
 cartsRouterM.post("", isAuthenticated, isAdminOrAdminMaster, createCartController);
 
 // Agregar producto al carrito
-cartsRouterM.put("/:cid/products/:pid", addProdCartController);
+cartsRouterM.put("/:cid/products/:pid",isAuthenticated, addProdCartController);
 //Borrar producto del carrito
 cartsRouterM.delete("/:cid/products/:pid", isAuthenticated, deleteProdCartController);
 
