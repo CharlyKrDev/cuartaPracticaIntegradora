@@ -28,7 +28,7 @@ cartsRouterM.get("/:cid/purchase", isAuthenticated,  isCartOwner, finalizePurcha
 
 //Borrar carrito general
 
-cartsRouterM.delete("/cart/:cid", deleteCartController);
+cartsRouterM.delete("/cart/:cid",isAuthenticated,isAdminOrAdminMaster, deleteCartController);
 
 
 export default cartsRouterM;

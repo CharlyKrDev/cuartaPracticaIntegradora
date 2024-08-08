@@ -1,8 +1,10 @@
 import { createLogger, format, transports} from "winston";
+import dotenv from 'dotenv'
+dotenv.config()
+
 const {printf, errors, colorize } = format;
 
-const entornoDeLogger = 'production'
-
+const entornoDeLogger = process.env.ENTORNO_LOGGER
 //Los niveles de logging y color
 const customLevels = {
     levels: {

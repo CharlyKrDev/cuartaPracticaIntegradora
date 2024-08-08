@@ -7,7 +7,6 @@ dotenv.config()
 
 const MAIL_PASS = process.env.MAIL_PASS
 const MAIL_USER = process.env.MAIL_USER
-console.log(`MAIL_USER: ${MAIL_USER}`)
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     port: 587,
