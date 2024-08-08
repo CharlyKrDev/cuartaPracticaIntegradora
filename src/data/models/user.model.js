@@ -10,10 +10,11 @@ const userSchema = new mongoose.Schema({
     password: String,
     cart: { type: mongoose.Schema.Types.ObjectId, ref: 'Cart', default: null },
     tickets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' }],
-    role: {type: String, default: "user"}
+    role: {type: String, default: "user"},
+    resetPasswordToken: String,
+    resetTokenExpiration: Date
 });
 
 const userModel = mongoose.model(userCollection, userSchema);
 
-export default userModel
-
+export default userModel;

@@ -4,6 +4,8 @@ import handlebars from "express-handlebars";
 import bcrypt from 'bcryptjs'
 import transporter from "./config/mailingConfig.js";
 import dotenv from 'dotenv'
+import { faker } from "@faker-js/faker";
+
 
 dotenv.config()
 
@@ -41,7 +43,7 @@ const hbs = handlebars.create({
         from: MAIL_USER,
         to: user.email,
         subject: 'Detalle de tu compra',
-        text: `Hola ${user.first_name},\n\nGracias por tu compra. Aquí están los detalles del ticket: ${ticketCode}:\n\n${formattedDetails}\nTotal: $${totalAmount}\n\nSaludos,\nTu equipo de eCommerce`,
+        text: `Hola ${user.first_name},\n\nGracias por tu compra. Aquí están los detalles del ticket: ${ticketCode}:\n\n${formattedDetails}\nTotal: $${totalAmount}\n\nSaludos,\nLa Tienda de Charly.`,
     };
 
     try {
@@ -51,5 +53,21 @@ const hbs = handlebars.create({
         console.error('Error enviando el correo de compra:', error);
     }
 };
+
+
+// Función para generar productos
+export const generateProducts = () => {
+  return {
+    title: faker.commerce.product(),
+    description: faker.commerce.productDescription(),
+    code: faker.commerce.isbn(),
+    price: parseFloat(faker.commerce.price({ min: 1500, max: 3800, dec: 0 })),
+    status: faker.datatype.boolean(),
+    stock: faker.number.int({ min: 10, max: 100 }),
+    category: faker.commerce.productAdjective(),
+    thumbnail: faker.image.urlLoremFlickr({ category: 'food' }),
+  };
+};
+
 
 export { __dirname, viewsPath, publicPath, __filename, hbs, createHash, isValidPassword, sendConfirmationEmail  };

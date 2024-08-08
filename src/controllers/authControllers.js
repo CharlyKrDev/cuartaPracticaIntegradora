@@ -1,3 +1,5 @@
+import logger from "../config/loggerConfig.js";
+
 export const githubAuth = (req, res) => {
     // The passport.authenticate middleware handles the GitHub authentication process
   };
@@ -42,6 +44,7 @@ export const githubAuth = (req, res) => {
         role: req.user.role,
         cart: req.user.cart,
       };
+      logger.info(`Ingreso de usuario correcto ${req.session.user.email}`)
       res.redirect('/current');
     } catch (err) {
       console.error(`Error al intentar iniciar sesión, tengo que hacer el alert!`)
@@ -52,6 +55,8 @@ export const githubAuth = (req, res) => {
   
   export const failLogin = (req, res) => {
     console.log(`Error al iniciar sesión, tengo que hacer el alert!`)
+    logger.error(`Acceso erróneo por datos inválidos`)
+
     res.redirect('/login');
   };
   

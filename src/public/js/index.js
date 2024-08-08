@@ -29,7 +29,7 @@ function renderProductList(products) {
             <p>ID: ${product._id}</p>
             <p>${product.description}</p>
             <p>Stock: ${product.stock} unidades</p>
-            <p><span>${product.price}</span></p>
+            <p><span>Precio: $${product.price}</span></p>
             <button class="btnDelete2" data-id="${product.id}">Eliminar</button>
           </section>
           </div>`;
@@ -51,7 +51,8 @@ const deleteProduct = (productId) => {
 };
 
 // Gestión de carga de producto por formulario
-
+const userEmail = document.getElementById("ownerMail").textContent;
+console.log(`probando ${userEmail}`)
 document.getElementById("formSection").addEventListener("submit", function (e) {
   e.preventDefault();
   const title = document.getElementById("title").value;
@@ -71,6 +72,7 @@ document.getElementById("formSection").addEventListener("submit", function (e) {
     stock: stock,
     category: category,
     thumbnail: thumbnail,
+    owner: userEmail,
   });
   document.getElementById("title").value = "";
   document.getElementById("description").value = "";

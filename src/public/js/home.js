@@ -43,26 +43,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     window.location.href = url.toString();
   }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
   // Obtener el carrito del usuario desde un elemento de datos en el DOM
-  const userCartId = document.getElementById("main").getAttribute("data-cart-id");
+  const userCartId = document
+    .getElementById("main")
+    .getAttribute("data-cart-id");
 
   // Agregar event listeners a todos los botones 'add-to-cart'
   document.querySelectorAll(".add-to-cart").forEach((button) => {
     button.addEventListener("click", async (event) => {
-      console.log(`cliickkk`);
       const productId = event.target.getAttribute("data-id");
 
       try {
         // Enviar solicitud para agregar producto al carrito del usuario
-        const response = await fetch(`/carts/${userCartId}/products/${productId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `/carts/${userCartId}/products/${productId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         // Leer la respuesta del servidor
         const result = await response.json();
@@ -81,32 +83,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Agregar event listener para crear un nuevo carrito
-  const newCart = document.getElementById("createCart");
-  newCart.addEventListener("click", async (e) => {
-    try {
-      // Enviar solicitud para crear un nuevo carrito
-      const response = await fetch(`/carts/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      // Leer la respuesta del servidor
-      const result = await response.json();
-      if (response.ok) {
-        // Mostrar mensaje de éxito y recargar la página si la solicitud se completó correctamente
-        alert("Carrito creado correctamente");
-        window.location.reload();
-      } else {
-        // Mostrar mensaje de error si hubo algún problema
-        alert(`Error al crear el carrito: ${result.message}`);
-      }
-    } catch (error) {
-      // Manejar errores de conexión o del servidor
-      console.error("Error al crear el carrito.", error);
-      alert("Hubo un error al crear el carrito.");
-    }
-  });
+  
 });

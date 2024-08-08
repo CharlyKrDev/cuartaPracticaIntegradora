@@ -14,5 +14,5 @@ export const productsRouterApi = express.Router();
 productsRouterApi.get("/", getProductsApi);
 productsRouterApi.get("/:pid", isAuthenticated, getProductByIdApi);
 productsRouterApi.delete("/:pid", isAuthenticated, isAdminOrAdminMaster, deleteProductByIdApi);
-productsRouterApi.put("/:pid", isAuthenticated, isAdminOrAdminMaster,  addProductApi);
+productsRouterApi.put("/:pid", isAuthenticated,isCartOwner, isAdminOrAdminMaster,  addProductApi);
 productsRouterApi.post("/",isAuthenticated, isAdminOrAdminMaster,updateProductApi);

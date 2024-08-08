@@ -13,6 +13,7 @@ const productsSchema = new mongoose.Schema({
     stock:{type:Number, required:true },
     category:{type:String, required:true},
     thumbnail:{type:Array, default:[], required:false},
+    owner:{type: String, unique: true}
 
 })
 productsSchema.plugin(mongoosePaginate);

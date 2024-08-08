@@ -22,18 +22,18 @@ cartsRouterApiM.get(
 );
 
 // Obtener un carrito por ID
-cartsRouterApiM.get("/cart/:cid", isCartOwner, getCartsApiByIdController);
+cartsRouterApiM.get("/cart/:cid", isAdminOrAdminMaster, getCartsApiByIdController);
 
 // Crear un nuevo carrito
-cartsRouterApiM.post("/",isAuthenticated,isCartOwner, createCartApiController);
+cartsRouterApiM.post("/",isAuthenticated,isAdminOrAdminMaster, createCartApiController);
 
 // Agregar producto al carrito
-cartsRouterApiM.put("/:cid/products/:pid",isAuthenticated, addProdCartApiController);
+cartsRouterApiM.put("/:cid/products/:pid",isAuthenticated,isCartOwner, addProdCartApiController);
 
 //Borrar producto del carrito
-cartsRouterApiM.delete("/:cid/products/:pid",isAuthenticated, deleteProdCartApiController);
+cartsRouterApiM.delete("/:cid/products/:pid",isAuthenticated,isCartOwner, deleteProdCartApiController);
 
 //Borrar carrito
-cartsRouterApiM.delete("/:cid", deleteCartUserApiController);
+cartsRouterApiM.delete("/:cid", isAdminOrAdminMaster, deleteCartUserApiController);
 
 export default cartsRouterApiM;

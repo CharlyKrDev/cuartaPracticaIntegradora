@@ -270,6 +270,16 @@ export default productsModel
 
 
 ### El proyecto incluye la implementación de .env para resguardar la información de acceso al servidor MongoDB.
+## Generación de ticket por compras.
+
+### Actualmente el proyecto se encuentra en la parte de refactorizacion, generación de logger, middleware, y biblioteca de errores.
+## Refactorizacion
+### Dentro para conseguir una mayor escalabilidad se implemento el uso de DAO, DTO, Controllers, Services y repository
+
+## Biblioteca de Errores
+### Incluye los errores mas comunes dentro de un e-commerce
+
+## Recupero de contraseña por mailing
 
 #### El proyecto actualmente esta en desarrollo.
 

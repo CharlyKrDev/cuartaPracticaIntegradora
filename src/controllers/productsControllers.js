@@ -1,5 +1,8 @@
 import ProductsDAO from '../dao/class/products.dao.js';
 import CartsDAO from '../dao/class/carts.dao.js';
+import ManagerError from "../services/managerErrors.js";
+import { generateProductErrorInfo } from "../services/infoErrors.js";
+import EErrors from "../services/enum.js";
 
 export const getProductsApi = async (req, res) => {
     try {
@@ -72,7 +75,8 @@ export const getProductsApi = async (req, res) => {
     try {
       let product;
   
-      product = await ProductsDAO.findOne(productId);
+      product = await ProductsDAO.getProductById(productId);
+
       res.status(200).json(product);
     } catch (error) {
       res.status(404).json({ error: error.message });
@@ -83,7 +87,7 @@ export const getProductsApi = async (req, res) => {
     const productId = req.params.pid;
   
     try {
-      let checkId = await ProductsDAO.findOne(productId);
+      let checkId = await ProductsDAO.getProductById(productId);
       if (!checkId) {
         return res
           .status(404)
@@ -113,7 +117,7 @@ export const getProductsApi = async (req, res) => {
       thumbnail,
     } = req.body;
     try {
-        let checkId = await ProductsDAO.findOne(productId);
+        let checkId = await ProductsDAO.getProductById(productId);
         if (!checkId) {
         return res
           .status(404)

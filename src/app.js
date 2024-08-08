@@ -17,6 +17,9 @@ import passport from "passport";
 import sessionsApiRouter from "./routes/api/sessionsRoutersApi.js";
 import registerRouter from "./routes/registerRouters.js";
 import sessionsRouter from "./routes/sessionsRouters.js";
+import { resetPassRouter } from "./routes/resetPasswordRouter.js";
+import mockerProductsApi from "./routes/api/mockerProductsApi.js"
+import errorHandler from "./middleware/indexErrors.js";
 
 const app = express();
 const PORT = 8080;
@@ -53,6 +56,8 @@ app.set("view engine", "handlebars");
 app.use("/api/sessions", sessionsApiRouter);
 app.use("/api/carts", cartsRouterApiM);
 app.use("/api/products", productsRouterApi);
+app.use("/api/mockingproducts", mockerProductsApi)
+
 
 // Views
 app.use("/carts", cartsRouterM);
@@ -61,7 +66,9 @@ app.use("/messages", messagesRouter);
 app.use("/", homeRouter);
 app.use("/", registerRouter);
 app.use("/sessions", sessionsRouter);
+app.use("/", resetPassRouter);
 
+app.use(errorHandler);
 
 
 

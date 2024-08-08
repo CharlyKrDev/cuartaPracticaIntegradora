@@ -10,7 +10,7 @@ export const getCartsApiController = async (req, res) => {
     res.status(200).json(carts);
   } catch (error) {
     res.status(500).json({
-      message: `Error al obtener el carrito por ID`,
+      message: `Error al obtener los carritos`,
       error: error.message,
     });
   }

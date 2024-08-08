@@ -4,6 +4,10 @@ import usersDAO from "../dao/class/users.dao.js";
 import TicketRepository from "../repository/ticketRepository.js";
 import purchaseDetailModel from "../data/models/purchase.model.js";
 import { sendConfirmationEmail } from "../utils.js";
+import ManagerError from "../services/managerErrors.js";
+import { generateOutOfStockErrorInfo } from "../services/infoErrors.js";
+import EErrors from "../services/enum.js";
+import logger from "../config/loggerConfig.js";
 
 export const finalizePurchaseController = async (req, res) => {
   const cartId = req.params.cid;
@@ -15,8 +19,14 @@ export const finalizePurchaseController = async (req, res) => {
   try {
     const cart = await CartsDAO.getCartByIdWithoutLean(cartId);
 
-    if (!cart) {
-      return res.status(404).json({ message: "Carrito no encontrado" });
+    if (!cart){
+      throw ManagerError.createError({
+        name: "getCartByIdError",
+        cause: `Invalid cart data: ${JSON.stringify(cartId)}`,
+        message: generateCartErrorInfo(cartId),
+        code: EErrors.CART_NOT_FOUND,
+        details: { cid:cartId }
+      })
     }
 
     // Verificar y actualizar stock de productos
@@ -40,6 +50,15 @@ export const finalizePurchaseController = async (req, res) => {
           title: item.productId.title,
           stock: item.productId.stock,
           quantity: item.quantity,
+        });
+        
+        // Registrar el error en la consola sin interrumpir la ejecución
+        ManagerError.createError({
+          name: "outStockError",
+          cause: `Productos fuera de stock: ${JSON.stringify(productsOutOfStock)}`,
+          message: generateOutOfStockErrorInfo(item.productId._id, item.productId.stock),
+          code: EErrors.OUT_OF_STOCK,
+          details: { productId: item.productId._id, availableStock: item.productId.stock, requestedQuantity: item.quantity }
         });
       }
     }
@@ -66,13 +85,12 @@ export const finalizePurchaseController = async (req, res) => {
       await ticket.save();
 
       // Agregar ticket al usuario
-      let user = await usersDAO.findUserById(userId);
+      const user = await usersDAO.findUserById(userId);
       if (!user) {
         throw new Error("Usuario no encontrado");
       }
       user.tickets = user.tickets || [];
       user.tickets.push(ticket._id);
-      
       await usersDAO.updateUser(userId, { tickets: user.tickets });
 
       // Enviar correo de confirmación
@@ -82,12 +100,13 @@ export const finalizePurchaseController = async (req, res) => {
         totalAmount,
         ticket.code
       );
+      logger.info(`El usuario ${userId} ha realizado de forma correcta una compra con ticket ${ticket._id}`)
+
     }
 
     // Actualizar carrito con productos no comprados
     cart.products = productsOutOfStock;
     await cart.save();
-
     res.render("purchaseSummary", {
       style: "style.css",
       purchasedProducts,

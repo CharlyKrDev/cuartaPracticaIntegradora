@@ -1,16 +1,16 @@
+<h2>DashBoard de <span id="ownerMail">{{email}}</span></h2>
 <main class="editProducts">
   <button><a href="http://localhost:8080/current">Volver</a></button>
   <button><a href="http://localhost:8080/carts">Ver carritos</a></button>
-  <button id="createCart">Crear carrito</button>
   <header>
     <h2>Agregar producto</h2>
   </header>
-
+ 
   <h3 style="margin-bottom: 10px;">Los siguientes campos son obligatorios:
     Titulo, Descripción, Código, Precio, Stock, Categoría:</h3>
 
   <section class="containerForm">
-    <form class="formProduct" id="formSection" action="/realTimeProducts" method="post">
+    <form class="formProduct" id="formSection">
       <label for="title">Titulo: </label>
       <input type="text" id="title" name="title" />
 

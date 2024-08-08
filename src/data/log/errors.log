@@ -1,0 +1,27 @@
+[info]; Usuario creado correctamente email: charlz1ww7@hotmail.com 8/8/2024, 03:37:25 
+[warning]; El usuario: null no existe 8/8/2024, 03:46:45 
+[warning]; El usuario: null no existe 8/8/2024, 03:46:53 
+[warning]; El usuario: null no existe 8/8/2024, 03:47:00 
+[info]; El usuario 66b41fce4aa5791283d070fe ha realizado de forma correcta una compra con ticket 66b423acd9e8aff7e69018df 8/8/2024, 03:47:26 
+[error]; Acceso erróneo por datos inválidos del usuario 8/8/2024, 03:53:03 
+[error]; Acceso erróneo por datos inválidos email de acceso: No proporcionado 8/8/2024, 03:59:04 
+[error]; Acceso erróneo por datos inválidos email de acceso: No proporcionado 8/8/2024, 04:05:40 
+[warning]; El usuario: regisee@hotmail.com no existe 8/8/2024, 04:09:52 
+[error]; Acceso erróneo por datos inválidos 8/8/2024, 04:09:52 
+[info]; Ingreso de usuario correcto registro3@gmail.com 8/8/2024, 04:12:32 
+[error]; getProductById, ID inválido 8/8/2024, 04:30:11 
+[error]; getProductById, ID inválido 6 8/8/2024, 04:35:57 
+[error]; getProductById, ID inválido 6 8/8/2024, 04:39:10 
+[error]; getProductById, ID inválido 6 8/8/2024, 04:39:17 
+[error]; getProductById, ID inválido 664527f145w6bf1429b90c12f 8/8/2024, 04:42:03 
+[error]; getProductById, ID inválido 664527f145w6bf1429b90c12f 8/8/2024, 04:43:25 
+[error]; getProductById, ID inválido 664527f145w6bf1429b90c12f 8/8/2024, 04:45:15 
+[error]; getProductById, ID inválido 664527f145w6bf1429b90c12f 8/8/2024, 04:45:34 
+[info]; Ingreso de usuario correcto regis@hotmail.com 8/8/2024, 05:02:32 
+[info]; Ingreso de usuario correcto regis@hotmail.com 8/8/2024, 05:56:36 
+[info]; Ingreso de usuario correcto regis@hotmail.com 8/8/2024, 05:57:23 
+[info]; Ingreso de usuario correcto regis@hotmail.com 8/8/2024, 05:57:59 
+[info]; Ingreso de usuario correcto regis@hotmail.com 8/8/2024, 05:58:44 
+[info]; El usuario 66688c122486aae19e824198 ha realizado de forma correcta una compra con ticket 66b4428bf95407f06656e5dd 8/8/2024, 05:59:09 
+[info]; Ingreso de usuario correcto regis@hotmail.com 8/8/2024, 06:00:24 
+[info]; Ingreso de usuario correcto regis@hotmail.com 8/8/2024, 06:04:00 

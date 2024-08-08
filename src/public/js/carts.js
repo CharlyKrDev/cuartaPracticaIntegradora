@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         // Enviar una solicitud DELETE para vaciar el carrito
-        const response = await fetch(`/carts/${cartId}`, {
+        const response = await fetch(`/carts/cart/${cartId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -102,5 +102,33 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Error al finalizar la compra.");
       }
     });
-  }
+  };
+  // Agregar event listener para crear un nuevo carrito
+  const newCart = document.getElementById("createCart");
+  newCart.addEventListener("click", async (e) => {
+    try {
+      // Enviar solicitud para crear un nuevo carrito
+      const response = await fetch(`/carts/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      // Leer la respuesta del servidor
+      const result = await response.json();
+      if (response.ok) {
+        // Mostrar mensaje de éxito y recargar la página si la solicitud se completó correctamente
+        alert("Carrito creado correctamente");
+        window.location.reload();
+      } else {
+        // Mostrar mensaje de error si hubo algún problema
+        alert(`Error al crear el carrito: ${result.message}`);
+      }
+    } catch (error) {
+      // Manejar errores de conexión o del servidor
+      console.error("Error al crear el carrito.", error);
+      alert("Hubo un error al crear el carrito.");
+    }
+  });
 });

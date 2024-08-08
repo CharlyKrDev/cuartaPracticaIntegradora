@@ -33,6 +33,32 @@ class UsersDAO {
     const user = await userModel.findById(userId).lean();
     return user ? new UserDTO(user) : null;
   }
+
+  async updateUserPasswordResetToken(userId, token, resetTokenExpiration) {
+    await userModel.updateOne(
+      { _id: userId },
+      { resetPasswordToken: token, resetTokenExpiration }
+    );
+  }
+
+  async getUserByPasswordResetToken(token) {
+    return await userModel.findOne({
+        resetPasswordToken: token,
+        resetTokenExpiration: { $gt: Date.now() }, // Verificar que el token no haya expirado
+      })
+      .lean();
+  }
+
+  async updateUserPassword(userId, hashedPassword) {
+    await userModel.updateOne(
+      { _id: userId },
+      {
+        password: hashedPassword,
+        resetPasswordToken: null,
+        resetTokenExpiration: null,
+      }
+    );
+  }
 }
 
 export default new UsersDAO();
