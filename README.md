@@ -271,15 +271,73 @@ export default productsModel
 
 ### El proyecto incluye la implementación de .env para resguardar la información de acceso al servidor MongoDB.
 ## Generación de ticket por compras.
+![image](https://github.com/user-attachments/assets/80035da1-a910-43d0-9af9-c54b06a8d1c1)
+
 
 ### Actualmente el proyecto se encuentra en la parte de refactorizacion, generación de logger, middleware, y biblioteca de errores.
 ## Refactorizacion
 ### Dentro para conseguir una mayor escalabilidad se implemento el uso de DAO, DTO, Controllers, Services y repository
+![image](https://github.com/user-attachments/assets/f440cdb5-b5a8-4f39-8e78-1646815f2c37)
 
 ## Biblioteca de Errores
+
+```javascript
+export const generateCartErrorInfo = (cart) => {
+    return `Hubo un problema al querer acceder al carrito ${cart}.
+    Pasos a seguir:
+    1) Desloguearse.
+    2) Loguearse nuevamente.
+    3) Si no se resolvió, contactar al soporte técnico.
+    `;
+};
+
+export const generateProductErrorInfo = (productId) => {
+    return `El producto con ID ${productId} no se encontró.
+    Pasos a seguir:
+    1) Verificar si el producto todavía está disponible.
+    2) Intentar buscar otro producto.
+    3) Si no se resolvió, contactar al soporte técnico.
+    `;
+};
+
+export const generateOutOfStockErrorInfo = (productId, availableStock) => {
+    return `El producto con ID ${productId} no tiene suficiente stock.
+    Stock disponible: ${availableStock}.
+    Pasos a seguir:
+    1) Reducir la cantidad solicitada.
+    2) Intentar comprar más tarde.
+    3) Si no se resolvió, contactar al soporte técnico.
+    `;
+};
+
+export const generateProductCreationErrorInfo = (productDetails) => {
+    return `Hubo un problema al crear el producto.
+    Titulo: ${productDetails.title} precio: ${productDetails.price} code: ${productDetails.code}
+    Pasos a seguir:
+    1) Verificar los detalles del producto.
+    2) Verificar los campos obligatorios. 
+    3)Intentar crear el producto nuevamente.
+    4) Si no se resolvió, contactar al soporte técnico.
+    `;
+};
+```
 ### Incluye los errores mas comunes dentro de un e-commerce
 
+![image](https://github.com/user-attachments/assets/7eeffcd8-7fa5-4da0-8e74-5a6b6641a1d6)
+
+
 ## Recupero de contraseña por mailing
+![image](https://github.com/user-attachments/assets/6460d03e-47f2-440f-b5f4-1cf60c983f39)
+
+### Con winston implemente un registro de log para registrar las acciones mas relevantes e-commerce
+
+![image](https://github.com/user-attachments/assets/b9e203d8-6d02-4b7f-8dc6-47b755616029)
+
+### Con la implementacion de Faker se pueden generar productos de manera automatizada para testear el funcionamiento de la web.
+
+![image](https://github.com/user-attachments/assets/4983034c-d1e8-49d7-a604-3166b8887879)
+
+
 
 #### El proyecto actualmente esta en desarrollo.
 
