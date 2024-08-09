@@ -1,0 +1,27 @@
+<h2>Gestor de Roles</h2>
+
+<form id="searchRoleForm" method="POST" action="/api/users/premium/{{uid}}">
+    <label for="email">Buscar rol por email:</label>
+    <input type="email" id="email" name="email" placeholder="Ingresar email" required />
+    <button type="submit">Buscar</button>
+</form>
+
+{{#if role}}
+  <div id="roleInfo">
+    <p>El rol actual de {{email}} es: <strong>{{role}}</strong></p>
+
+    <form id="assignRoleForm">
+        <label for="newRole">Asignar nuevo rol:</label>
+        <select id="newRole" name="newRole">
+            <option value="user" {{#ifEquals role "user"}}selected{{/ifEquals}}>User</option>
+            <option value="admin" {{#ifEquals role "admin"}}selected{{/ifEquals}}>Admin</option>
+            <option value="adminMaster" {{#ifEquals role "adminMaster"}}selected{{/ifEquals}}>Admin Master</option>
+        </select>
+        <button type="submit">Asignar nuevo rol</button>
+    </form>
+  </div>
+{{else}}
+  <p>No se ha buscado ningún rol aún.</p>
+{{/if}}
+
+<script type="module" src="js/managerRole.js"></script>

@@ -25,3 +25,11 @@
 [info]; El usuario 66688c122486aae19e824198 ha realizado de forma correcta una compra con ticket 66b4428bf95407f06656e5dd 8/8/2024, 05:59:09 
 [info]; Ingreso de usuario correcto regis@hotmail.com 8/8/2024, 06:00:24 
 [info]; Ingreso de usuario correcto regis@hotmail.com 8/8/2024, 06:04:00 
+[info]; Ingreso de usuario correcto regis@hotmail.com 8/8/2024, 02:19:11 
+[info]; Ingreso de usuario correcto regis@hotmail.com 8/8/2024, 02:19:29 
+[info]; Ingreso de usuario correcto kaarcarlos@gmail.com 8/8/2024, 02:19:40 
+[info]; La nueva password del user: 66b3b41de99e24053b56e181 se creo de forma correcta 8/8/2024, 03:55:18 
+[error]; La nueva password del user: 66b3b41de99e24053b56e181 coincide con la anterior 8/8/2024, 03:56:01 
+[error]; La nueva password del user: 66b3b41de99e24053b56e181 email: kaarcarlos@gmail.com coincide con la anterior 8/8/2024, 04:02:54 
+[error]; RenderResetPassword(500): El token del user es invalido o esta vencido 8/8/2024, 04:07:32 
+[error]; RenderResetPassword(500): El token del user es invalido o esta vencido 9/8/2024, 05:06:04 

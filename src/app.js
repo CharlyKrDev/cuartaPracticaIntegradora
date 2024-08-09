@@ -20,6 +20,7 @@ import sessionsRouter from "./routes/sessionsRouters.js";
 import { resetPassRouter } from "./routes/resetPasswordRouter.js";
 import mockerProductsApi from "./routes/api/mockerProductsApi.js"
 import errorHandler from "./middleware/indexErrors.js";
+import { managerRoleApi } from "./routes/api/managerRoleRouterApi.js";
 
 const app = express();
 const PORT = 8080;
@@ -57,6 +58,7 @@ app.use("/api/sessions", sessionsApiRouter);
 app.use("/api/carts", cartsRouterApiM);
 app.use("/api/products", productsRouterApi);
 app.use("/api/mockingproducts", mockerProductsApi)
+app.use("/", managerRoleApi )
 
 
 // Views
