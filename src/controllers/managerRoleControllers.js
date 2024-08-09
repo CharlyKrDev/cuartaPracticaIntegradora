@@ -1,5 +1,4 @@
 import usersDAO from "../dao/class/users.dao.js";
-import mongoose from "mongoose";
 
 // Endpoint para renderizar la plantilla
 export const renderRoleUsersApiController = async (req, res) => {
