@@ -33,3 +33,33 @@
 [error]; La nueva password del user: 66b3b41de99e24053b56e181 email: kaarcarlos@gmail.com coincide con la anterior 8/8/2024, 04:02:54 
 [error]; RenderResetPassword(500): El token del user es invalido o esta vencido 8/8/2024, 04:07:32 
 [error]; RenderResetPassword(500): El token del user es invalido o esta vencido 9/8/2024, 05:06:04 
+[info]; Ingreso de usuario correcto kaarcarlos@gmail.com 10/8/2024, 05:13:42 
+[info]; Ingreso de usuario correcto kaarcarlos@gmail.com 10/8/2024, 05:14:10 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:21:04 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:21:04 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:21:32 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:24:16 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:24:17 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:28:40 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:28:42 
+[info]; Server running on port: http://localhost:8080/products 10/8/2024, 05:37:30 
+[info]; Connected to MongoDB 10/8/2024, 05:37:31 
+[info]; Connected to the database 10/8/2024, 05:37:31 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:38:06 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:38:36 
+[info]; Server running on port: http://localhost:8080/products 10/8/2024, 05:41:25 
+[info]; Connected to MongoDB 10/8/2024, 05:41:25 
+[info]; Connected to the database 10/8/2024, 05:41:25 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:41:25 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:41:27 
+[info]; Server running on port: http://localhost:8080/products 10/8/2024, 05:44:54 
+[info]; Connected to MongoDB 10/8/2024, 05:44:55 
+[info]; Connected to the database 10/8/2024, 05:44:55 
+[info]; Server running on port: http://localhost:8080/products 10/8/2024, 05:46:23 
+[info]; Connected to MongoDB 10/8/2024, 05:46:23 
+[info]; Connected to the database 10/8/2024, 05:46:23 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:46:27 
+[info]; Server running on port: http://localhost:8080/products 10/8/2024, 05:51:11 
+[info]; Connected to MongoDB 10/8/2024, 05:51:11 
+[info]; Connected to the database 10/8/2024, 05:51:11 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:51:11 

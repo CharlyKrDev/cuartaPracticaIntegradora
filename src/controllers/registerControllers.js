@@ -9,7 +9,7 @@ export const renderLogin = (req, res) => {
   export const renderCurrent = (req, res) => {
     const userRole =  req.session.user.role
     const userCart = req.session.user.cart
-    res.render("current", { user: req.session.user, roleUser: userRole === "user", roleAdmin: userRole ==="admin" || userRole==="adminMaster"
+    res.render("current", { user: req.session.user, roleUser: userRole === "user", rolePremium: userRole === 'premium', roleAdmin: userRole ==="admin" || userRole==="adminMaster"
       , cart: userCart !== null , style: "style.css" });
   };
   

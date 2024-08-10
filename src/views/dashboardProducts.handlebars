@@ -1,11 +1,16 @@
-<h2>DashBoard de <span id="ownerMail">{{email}}</span></h2>
 <main class="editProducts">
+  <h2>DashBoard de <span id="ownerName">{{name}}</span></h2>
+  <p>Tu Email: <span id="ownerMail">{{email}}</span></p>
+  <p>Tu rol:<span id="ownerRole">{{role}}</span></p>
   <button><a href="http://localhost:8080/current">Volver</a></button>
+  {{#if admin}}
   <button><a href="http://localhost:8080/carts">Ver carritos</a></button>
+  {{/if}}
+
   <header>
     <h2>Agregar producto</h2>
   </header>
- 
+
   <h3 style="margin-bottom: 10px;">Los siguientes campos son obligatorios:
     Titulo, Descripción, Código, Precio, Stock, Categoría:</h3>
 

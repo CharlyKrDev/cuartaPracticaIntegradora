@@ -34,7 +34,7 @@ export const purchaseCart = async (cartId, user) => {
             amount: totalAmount,
             purchaser: user.email,
         })
-        console.log(ticket)
+        logger.info(`Se ha genenado el siguiente ticket: ${ticket}`)
 
         await ticketRepository.createTicket(ticket)
 

@@ -8,7 +8,7 @@ export const registerPassportController = async (req, username, password, done) 
   try {
     let user = await UsersDAO.getUserByEmail(username);
     if (user) {
-      console.log("El usuario ya existe");
+      logger.waring("El usuario ya existe");
       return done(null, false);
     }
 

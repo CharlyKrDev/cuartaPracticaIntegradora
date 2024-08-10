@@ -4,6 +4,7 @@ import { dashboardProductsRouter } from "./routes/dashboardProductsRouter.js";
 import { homeRouter } from "./routes/homeRouters.js";
 import cartsRouterM from "./routes/cartsRouter.js";
 import { Server } from "socket.io";
+import socketIOExpressSession from "socket.io-express-session";
 import { messagesRouter } from "./routes/messagesRouters.js";
 import { socketConnection } from "./connection/handleSockets.js";
 import { messagesConnection } from "./connection/messagesSockets.js";
@@ -21,12 +22,13 @@ import { resetPassRouter } from "./routes/resetPasswordRouter.js";
 import mockerProductsApi from "./routes/api/mockerProductsApi.js"
 import errorHandler from "./middleware/indexErrors.js";
 import { managerRoleApi } from "./routes/api/managerRoleRouterApi.js";
+import logger from "./config/loggerConfig.js";
 
 const app = express();
 const PORT = 8080;
 const httpServer = app.listen(
   PORT,
-  console.log(`Server running on port: http://localhost:${PORT}/products`)
+  logger.info(`Server running on port: http://localhost:${PORT}/products`)
 );
 const socketServer = new Server(httpServer);
 
@@ -35,19 +37,27 @@ app.enable("view cache");
 app.use(express.static(publicPath));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(
-  session({
-    secret: "secretkey",
-    resave: false,
-    saveUninitialized: true,
-    store: MongoStore.create({
-      mongoUrl: mongoServer,
-    }),
-  })
-);
+// Configuración de la sesión
+const sessionMiddleware = session({
+  secret: "secretkey",
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: mongoServer,
+  }),
+});
+
+// Usar la configuración de sesión en Express
+app.use(sessionMiddleware);
+
+// Integrar la sesión de Express con Socket.IO usando el mismo middleware
+socketServer.use(socketIOExpressSession(sessionMiddleware, {
+  autoSave: true,
+}));
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");

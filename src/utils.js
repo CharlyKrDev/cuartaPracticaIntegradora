@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs'
 import transporter from "./config/mailingConfig.js";
 import dotenv from 'dotenv'
 import { faker } from "@faker-js/faker";
+import logger from "./config/loggerConfig.js";
 
 
 dotenv.config()
@@ -32,9 +33,12 @@ const publicPath = join(__dirname + "/public");
 const hbs = handlebars.create({
     defaultLayout: 'main',
     helpers: {
-      multiply: (a, b) => a * b
+      multiply: (a, b) => a * b,
+      or: (a, b) => a || b
     }
   });
+
+ 
 
   // Mailing
 
@@ -52,7 +56,7 @@ const hbs = handlebars.create({
 
     try {
         await transporter.sendMail(mailOptions);
-        console.log('Correo de compra enviado');
+       logger.info(`Correo de compra enviado a ${user.email}`);
     } catch (error) {
         console.error('Error enviando el correo de compra:', error);
     }

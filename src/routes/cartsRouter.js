@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { isAdminOrAdminMaster } from "../middleware/auth.js";
-import { isAuthenticated, isCartOwner } from "../middleware/auth.js";
+import { isAuthenticated, isCartOwner, isPremium } from "../middleware/auth.js";
 import { getCartsController, getCartsByIdController,deleteCartController, createCartController, addProdCartController, deleteProdCartController, deleteCartUserController } from "../controllers/cartsControllers.js";
 import { finalizePurchaseController } from "../controllers/finalizePurchaseController.js";
 const cartsRouterM = Router();

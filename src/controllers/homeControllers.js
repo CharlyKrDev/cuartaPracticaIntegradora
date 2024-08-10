@@ -43,7 +43,7 @@ export const getHomePage = async (req, res) => {
       prevLink,
       nextLink,
       isValid,
-      role: userRole === "user",
+      role: userRole === "user" || userRole === "premium",
       cart: cartId,
     });
   } catch (error) {

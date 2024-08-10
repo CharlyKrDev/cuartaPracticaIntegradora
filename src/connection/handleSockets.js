@@ -12,8 +12,8 @@ export const socketConnection = (socketServer) => {
           handleAddProduct(socketServer, socket, newProduct);
       });
 
-      socket.on("deleteProduct", (productId) => {
-          handleDeleteProduct(socketServer, socket, productId);
+      socket.on("deleteProduct", (productId, userEmail) => {
+          handleDeleteProduct(socketServer, socket, productId, userEmail);
       });
   });
 };

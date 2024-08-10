@@ -2,11 +2,11 @@
 <main class="containerCurrent">
 
     <aside class="btnCurrent">
-        {{#if roleUser}}
+        {{#if (or roleUser rolePremium)}}
         <button style="margin-top:30px"><a href="http://localhost:8080/messages/">Atención por chat</a></button>
         <button><a href="http://localhost:8080/carts/cart/{{user.cart}}">Ver mi carrito</a></button>
         {{/if}}
-        {{#if roleAdmin}}
+        {{#if (or roleAdmin rolePremium)}}
         <button><a href="http://localhost:8080/dashBoardProducts">Panel de administrador</a></button>
         {{/if}}
 
@@ -24,7 +24,7 @@
         <p>Email: {{user.email}}</p>
         <p>Edad: {{user.age}}</p>
         <p>Mi rol: {{user.role}}</p>
-        {{#if roleUser}}
+        {{#if (or roleUser rolePremium)}}
         <p>Carrito: <span style="font-weight: bold; color: green;">Activo</span></p>
         {{else}}
         <p>Carrito: <span style="font-weight: bold; color: red;">Desactivado</span></p>

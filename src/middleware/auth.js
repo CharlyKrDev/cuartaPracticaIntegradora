@@ -72,6 +72,26 @@ export const isAdminOrAdminMaster = (req, res, next) => {
   }
 };
 
+export const dashBoardAccess = (req, res, next) => {
+  const userRole = req.user.role;
+
+  if (userRole === "admin" || userRole === "adminMaster" || userRole === "premium") {
+    return next();
+  } else {
+    return res.redirect("/404");
+  }
+};
+
+export const isPremium = (req, res, next) => {
+  const userRole = req.user.role;
+
+  if (userRole === "admin" || userRole === "adminMaster" || userRole === "premium") {
+    return next();
+  } else {
+    return res.redirect("/404");
+  }
+};
+
 export const isAdminMaster = (req, res, next) => {
   const userRole = req.user.role;
 

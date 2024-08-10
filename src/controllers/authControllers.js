@@ -23,12 +23,12 @@ export const githubAuth = (req, res) => {
   };
   
   export const register = (req, res) => {
-    console.log("Usuario registrado");
+    logger.info("Usuario registrado");
     res.redirect('/register');
   };
   
   export const failRegister = (req, res) => {
-    console.log("Error al registrarse");
+    logger.info("Error al registrarse");
     res.redirect('/register');
   };
   
@@ -94,7 +94,7 @@ export const githubAuth = (req, res) => {
   };
   
   export const failRegisterApi = (req, res) => {
-    console.log("Estrategia fallida");
+    logger.error("Estrategia fallida");
     res.send({ error: "Falló" });
   };
   

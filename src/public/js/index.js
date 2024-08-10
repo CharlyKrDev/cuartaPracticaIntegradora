@@ -1,4 +1,7 @@
 const socket = io();
+const userEmail = document.getElementById("ownerMail").textContent;
+const userRole = document.getElementById("ownerRole").textContent;
+
 
 // Re renderizado posterior a modificaciones
 socket.on("currentProducts", async function (products) {
@@ -13,12 +16,18 @@ socket.on("addProduct", async function (products) {
   renderProductList(products);
 });
 
+socket.on("error", (data) => {
+  alert(data.message);
+});
+
+
 // Renderizado de productos
 
 function renderProductList(products) {
   const productList = document.getElementById("productList");
   productList.innerHTML = "";
   try {
+
     products.forEach((product) => {
       const liProduct = document.createElement("ul");
       liProduct.innerHTML = ` 
@@ -30,6 +39,8 @@ function renderProductList(products) {
             <p>${product.description}</p>
             <p>Stock: ${product.stock} unidades</p>
             <p><span>Precio: $${product.price}</span></p>
+            <p><span>Owner: ${product.owner}</span></p>
+
             <button class="btnDelete2" data-id="${product.id}">Eliminar</button>
           </section>
           </div>`;
@@ -37,7 +48,7 @@ function renderProductList(products) {
 
       const btnDelete2 = liProduct.querySelector(".btnDelete2");
       btnDelete2.addEventListener("click", () => {
-        deleteProduct(product._id);
+        deleteProduct(product._id, userEmail);
       });
     });
   } catch (error) {
@@ -46,13 +57,11 @@ function renderProductList(products) {
 }
 
 // Borrar Producto por ID
-const deleteProduct = (productId) => {
-  socket.emit("deleteProduct", productId);
+const deleteProduct = (productId, userEmail) => {
+  socket.emit("deleteProduct", productId, userEmail);
 };
 
 // Gestión de carga de producto por formulario
-const userEmail = document.getElementById("ownerMail").textContent;
-console.log(`probando ${userEmail}`)
 document.getElementById("formSection").addEventListener("submit", function (e) {
   e.preventDefault();
   const title = document.getElementById("title").value;

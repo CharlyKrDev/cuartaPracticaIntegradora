@@ -12,7 +12,9 @@ export const renderRoleUsersApiController = async (req, res) => {
 
 export const managerRoleUsersApiController = async (req, res) => {
   const { uid } = req.params; 
-  const { newRole } = req.body;
+  const { role } = req.body;
+
+  const newRole = role.toLowerCase()
 
   try {
     const user = await usersDAO.getUserByEmail(uid);
@@ -28,11 +30,18 @@ export const managerRoleUsersApiController = async (req, res) => {
     const userRole = user.role;
 
     // Verifica que el nuevo rol sea diferente del actual
-    if (userRole === newRole) {
+    if (userRole === newRole.toLowerCase()) {
       return res
         .status(400)
         .json({ message: "No hubo cambio. Porque el rol asignado es el mismo que el vigente" });
     }
+    // Verifica que el nuevo rol sea valido
+    if (newRole !== 'admin' && newRole !== 'adminMaster' && newRole !== 'user' && newRole !== 'premium') {
+        return res
+          .status(400)
+          .json({ message: "Elegir un rol válido: adminMaster, admin, premium o user" });
+    }
+    
 
     // Actualiza el rol del usuario
     await usersDAO.updateUser(user._id, { role: newRole });
