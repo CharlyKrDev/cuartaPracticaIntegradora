@@ -63,3 +63,15 @@
 [info]; Connected to MongoDB 10/8/2024, 05:51:11 
 [info]; Connected to the database 10/8/2024, 05:51:11 
 [info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:51:11 
+[info]; Server running on port: http://localhost:8080/products 10/8/2024, 05:52:29 
+[info]; Connected to MongoDB 10/8/2024, 05:52:29 
+[info]; Connected to the database 10/8/2024, 05:52:29 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:52:30 
+[info]; New client connected to socket: charlz17@hotmail.com 10/8/2024, 05:52:33 
+[info]; Ingreso de usuario correcto kaarcarlos@gmail.com 10/8/2024, 05:52:57 
+[info]; New client connected to socket: kaarcarlos@gmail.com 10/8/2024, 05:53:00 
+[info]; Server running on port: http://localhost:8080/products 11/8/2024, 03:53:00 
+[info]; Connected to MongoDB 11/8/2024, 03:53:01 
+[info]; Connected to the database 11/8/2024, 03:53:01 
+[info]; Correo de compra enviado a charlz17@hotmail.com 11/8/2024, 03:53:47 
+[info]; El usuario 66783d33e192c7768c27cdf4 ha realizado de forma correcta una compra con ticket 66b8c26924c5cec3792ac371 11/8/2024, 03:53:47 
