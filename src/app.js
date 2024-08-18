@@ -1,5 +1,5 @@
 import express from "express";
-import { viewsPath, publicPath} from "./utils/utils.js";
+import { viewsPath, publicPath, swaggerOptions} from "./utils/utils.js";
 import { hbs } from "./utils/functions/handlebars.js";
 import { dashboardProductsRouter } from "./routes/dashboardProductsRouter.js";
 import { homeRouter } from "./routes/homeRouters.js";
@@ -24,7 +24,8 @@ import mockerProductsApi from "./routes/api/mockerProductsApi.js"
 import errorHandler from "./middleware/indexErrors.js";
 import { managerRoleApi } from "./routes/api/managerRoleRouterApi.js";
 import logger from "./config/loggerConfig.js";
-
+import swaggerJSDoc from "swagger-jsdoc";
+import SwaggerUiExpress from "swagger-ui-express"
 const app = express();
 const PORT = 8080;
 const httpServer = app.listen(
@@ -83,6 +84,9 @@ app.use("/", resetPassRouter);
 
 app.use(errorHandler);
 
+// Documentación API
+const specs =swaggerJSDoc(swaggerOptions);
+app.use("/api/docs", SwaggerUiExpress.serve, SwaggerUiExpress.setup(specs))
 
 
 socketConnection(socketServer);

@@ -1,8 +1,6 @@
 import ProductsDAO from '../dao/class/products.dao.js';
 import CartsDAO from '../dao/class/carts.dao.js';
-import ManagerError from "../services/managerErrors.js";
-import { generateProductErrorInfo } from "../services/infoErrors.js";
-import EErrors from "../services/enum.js";
+
 
 export const getProductsApi = async (req, res) => {
     try {

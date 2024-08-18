@@ -15,8 +15,18 @@ const viewsPath = join(rootDir, "views");
 const publicPath = join(rootDir, "public");
 
 
- 
+// Documentación API
+const swaggerOptions ={
+    definition:{
+      openapi:'3.0.1',
+      info:{
+        title:"Documentación del modulo de productos y el de carrito",
+        description:"API de documentación para desarrollo y mantenimiento",
+      }
+    },
+    apis:[`${rootDir}/docs/**/*.yaml`]
+  }
 
 
 
-export { __dirname, viewsPath, publicPath, __filename };
+export { __dirname, viewsPath, publicPath, __filename, swaggerOptions };
