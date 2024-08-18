@@ -14,7 +14,7 @@ paths:
       tags:
         - Cart
       security:
-        - bearerAuth: []
+        - cookieAuth: []
       responses:
         200:
           description: Lista de todos los carritos
@@ -23,7 +23,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Cart'
+                  $ref: "#/components/schemas/Cart"
         500:
           description: Error al obtener los carritos
 
@@ -32,14 +32,14 @@ paths:
       tags:
         - Cart
       security:
-        - bearerAuth: []
+        - cookieAuth: []
       responses:
         201:
-          description: Carrito creado correctamente
+          description: Carrito creado correctamente.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cart'
+                $ref: "#/components/schemas/Cart"
         500:
           description: Error al crear el carrito
 
@@ -56,14 +56,14 @@ paths:
           schema:
             type: string
       security:
-        - bearerAuth: []
+        - cookieAuth: []
       responses:
         200:
           description: Carrito encontrado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cart'
+                $ref: "#/components/schemas/Cart"
         500:
           description: Error al obtener el carrito por ID
 
@@ -79,7 +79,7 @@ paths:
           schema:
             type: string
       security:
-        - bearerAuth: []
+        - cookieAuth: []
       responses:
         200:
           description: Carrito borrado correctamente
@@ -113,14 +113,14 @@ paths:
           schema:
             type: string
       security:
-        - bearerAuth: []
+        - cookieAuth: []
       responses:
         201:
           description: Producto agregado al carrito correctamente
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cart'
+                $ref: "#/components/schemas/Cart"
         500:
           description: Error al agregar el producto al carrito
 
@@ -142,14 +142,14 @@ paths:
           schema:
             type: string
       security:
-        - bearerAuth: []
+        - cookieAuth: []
       responses:
         200:
           description: Producto eliminado del carrito correctamente
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cart'
+                $ref: "#/components/schemas/Cart"
         500:
           description: Error al eliminar el producto del carrito
 
@@ -175,8 +175,4 @@ components:
                 type: integer
                 description: Cantidad del producto en el carrito
                 example: 2
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+

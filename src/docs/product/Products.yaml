@@ -92,7 +92,7 @@ paths:
       tags:
         - Product
       security:
-        - bearerAuth: []
+        - cookieAuth: []
       requestBody:
         description: Datos del producto
         required: true
@@ -126,7 +126,7 @@ paths:
       tags:
         - Product
       security:
-        - bearerAuth: []
+        - cookieAuth: []
       parameters:
         - in: path
           name: pid
@@ -151,9 +151,9 @@ paths:
     delete:
       summary: Elimina un producto por su ID
       tags:
-        - Product      
+        - Product
       security:
-        - bearerAuth: []
+        - cookieAuth: []
       parameters:
         - in: path
           name: pid
@@ -184,9 +184,9 @@ paths:
     put:
       summary: Actualiza un producto existente
       tags:
-        - Product      
+        - Product
       security:
-        - bearerAuth: []
+        - cookieAuth: []
       parameters:
         - in: path
           name: pid
@@ -272,9 +272,3 @@ components:
         message:
           type: string
           description: Mensaje informativo
-
-securitySchemes:
-  bearerAuth:
-    type: http
-    scheme: bearer
-    bearerFormat: JWT
