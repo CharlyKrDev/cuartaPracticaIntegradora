@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
-import transporter from "./config/mailingConfig.js";
+import transporter from '../../config/mailingConfig.js';
+import logger from '../../config/loggerConfig.js';
 
 dotenv.config()
 

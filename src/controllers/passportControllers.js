@@ -1,4 +1,4 @@
-import { createHash, isValidPassword } from "../utils.js";
+import { createHash, isValidPassword } from '../utils/functions/hashearPassword.js';
 import UsersDAO from '../dao/class/users.dao.js';
 import CartsDAO from "../dao/class/carts.dao.js";
 import logger from "../config/loggerConfig.js";

@@ -1,5 +1,6 @@
 import express from "express";
-import { viewsPath, publicPath, hbs } from "./utils.js";
+import { viewsPath, publicPath} from "./utils/utils.js";
+import { hbs } from "./utils/functions/handlebars.js";
 import { dashboardProductsRouter } from "./routes/dashboardProductsRouter.js";
 import { homeRouter } from "./routes/homeRouters.js";
 import cartsRouterM from "./routes/cartsRouter.js";

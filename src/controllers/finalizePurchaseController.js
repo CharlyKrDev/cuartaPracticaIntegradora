@@ -3,7 +3,7 @@ import ProductsDAO from "../dao/class/products.dao.js";
 import usersDAO from "../dao/class/users.dao.js";
 import TicketRepository from "../repository/ticketRepository.js";
 import purchaseDetailModel from "../data/models/purchase.model.js";
-import { sendConfirmationEmail } from "../utils.js";
+import { sendConfirmationEmail } from "../utils/mail/mailing.js";
 import ManagerError from "../services/managerErrors.js";
 import { generateOutOfStockErrorInfo } from "../services/infoErrors.js";
 import EErrors from "../services/enum.js";
@@ -94,14 +94,17 @@ export const finalizePurchaseController = async (req, res) => {
       await usersDAO.updateUser(userId, { tickets: user.tickets });
 
       // Enviar correo de confirmación
+
+      if (purchasedProducts.length > 0) {
+
       await sendConfirmationEmail(
         user,
         purchasedProducts,
         totalAmount,
         ticket.code
       );
-      logger.info(`El usuario ${userId} ha realizado de forma correcta una compra con ticket ${ticket._id}`)
-
+      logger.info(`El usuario ${userId} con email ${user.email} ha realizado de forma correcta una compra con ticket ${ticket._id}`)
+    }
     }
 
     // Actualizar carrito con productos no comprados

@@ -6,8 +6,13 @@ import { dirname, join } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const viewsPath = join(__dirname + "/views");
-const publicPath = join(__dirname + "/public");
+
+// Subir un nivel para alcanzar la raíz del proyecto
+const rootDir = join(__dirname, "..");
+
+
+const viewsPath = join(rootDir, "views");
+const publicPath = join(rootDir, "public");
 
 
  

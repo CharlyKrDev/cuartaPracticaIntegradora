@@ -2,7 +2,7 @@ import crypto from "crypto";
 import nodemailer from "nodemailer";
 import UsersDAO from "../dao/class/users.dao.js";
 import dotenv from "dotenv";
-import { createHash, comparePassword } from "../utils.js";
+import { createHash, comparePassword } from "../utils/functions/hashearPassword.js";
 import logger from "../config/loggerConfig.js";
 
 dotenv.config();

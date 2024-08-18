@@ -1,6 +1,5 @@
 
 import bcrypt from 'bcryptjs'
-import dotenv from 'dotenv'
 
 
 
