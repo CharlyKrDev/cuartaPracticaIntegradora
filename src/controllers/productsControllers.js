@@ -28,7 +28,6 @@ export const getProductsApi = async (req, res) => {
       };
   
       const products = await ProductsDAO.getProductsPaginated({}, options);
-  
       if (debug) {
         return res.json({
           status: "success",
@@ -114,26 +113,28 @@ export const getProductsApi = async (req, res) => {
       category,
       thumbnail,
     } = req.body;
+  
     try {
-        let checkId = await ProductsDAO.getProductById(productId);
-        if (!checkId) {
+      let checkId = await ProductsDAO.getProductById(productId);
+      if (!checkId) {
         return res
           .status(404)
-          .send(`No se encontró ningún producto con el ID ${productId}`);
+          .json({ status: "error", message: `No se encontró ningún producto con el ID ${productId}` });
       }
   
       let checkCode = await ProductsDAO.getProductByCode({ code: code });
   
       if (checkCode.length > 0) {
-        return res.status(400).json({ error: "Code existente" });
+        return res.status(400).json({ status: "error", message: "Code existente" });
       }
+  
       await ProductsDAO.updateOneProduct(productId, req.body);
   
-      res.status(200).json({ message: `Producto actualizado correctamente` });
+      res.status(200).json({ status: "success", message: `Producto actualizado correctamente`, payload: req.body });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ status: "error", message: error.message });
     }
-  }
+  };
 
   export const updateProductApi = async (req, res) => {
     const {
@@ -146,20 +147,24 @@ export const getProductsApi = async (req, res) => {
       category,
       thumbnail,
     } = req.body;
-    try {
-        let checkCode = await ProductsDAO.getProductByCode({ code: code });
   
-      if (checkCode.length > 0) {
+    try {
+      // Busca un producto con el mismo código
+      let checkCode = await ProductsDAO.getProductByCode({ code });
+  
+      if (checkCode) {
         return res.status(400).json({ error: "Code existente" });
       }
   
       const newProduct = await ProductsDAO.createProduct(req.body);
   
       res.status(200).json({
+        status: "success",
         Producto: newProduct,
         message: `Producto cargado correctamente`,
       });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({status: "error", error: error.message });
     }
-  }
+  };
+  

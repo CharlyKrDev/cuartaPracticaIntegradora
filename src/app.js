@@ -26,7 +26,10 @@ import { managerRoleApi } from "./routes/api/managerRoleRouterApi.js";
 import logger from "./config/loggerConfig.js";
 import swaggerJSDoc from "swagger-jsdoc";
 import SwaggerUiExpress from "swagger-ui-express"
-const app = express();
+import { productsRouterTest } from "./routes/test/productsRoutersTest.js";
+import cartsRouterTest from "./routes/test/cartsRouterTest.js";
+import sessionsRouterTest from './routes/test/sessionsRoutersTest.js'
+export const app = express();
 const PORT = 8080;
 const httpServer = app.listen(
   PORT,
@@ -72,6 +75,11 @@ app.use("/api/products", productsRouterApi);
 app.use("/api/mockingproducts", mockerProductsApi)
 app.use("/", managerRoleApi )
 
+// Tests
+
+app.use("/test/sessions", sessionsRouterTest);
+app.use("/test/carts", cartsRouterTest);
+app.use("/test/products", productsRouterTest);
 
 // Views
 app.use("/carts", cartsRouterM);
