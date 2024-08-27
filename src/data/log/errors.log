@@ -766,3 +766,6 @@
 [info]; Server running on port: http://localhost:8080/products 27/8/2024, 09:46:00 
 [info]; Connected to MongoDB 27/8/2024, 09:46:00 
 [info]; Connected to the database 27/8/2024, 09:46:00 
+[info]; Server running on port: http://localhost:8080/products 27/8/2024, 09:53:43 
+[info]; Connected to MongoDB 27/8/2024, 09:53:44 
+[info]; Connected to the database 27/8/2024, 09:53:44 
