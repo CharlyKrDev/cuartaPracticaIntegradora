@@ -2,7 +2,6 @@ const socket = io();
 const userEmail = document.getElementById("ownerMail").textContent;
 const userRole = document.getElementById("ownerRole").textContent;
 
-
 // Re renderizado posterior a modificaciones
 socket.on("currentProducts", async function (products) {
   renderProductList(products);
@@ -20,14 +19,12 @@ socket.on("error", (data) => {
   alert(data.message);
 });
 
-
 // Renderizado de productos
 
 function renderProductList(products) {
   const productList = document.getElementById("productList");
   productList.innerHTML = "";
   try {
-
     products.forEach((product) => {
       const liProduct = document.createElement("ul");
       liProduct.innerHTML = ` 
@@ -36,10 +33,12 @@ function renderProductList(products) {
           <img class="imgCard" src="${product.thumbnail}" alt="${product.title}" />
           <section class="textCard">
             <p>ID: ${product._id}</p>
+            <p><span>Code: ${product.code}</span></p>
             <p>${product.description}</p>
             <p>Stock: ${product.stock} unidades</p>
             <p><span>Precio: $${product.price}</span></p>
             <p><span>Owner: ${product.owner}</span></p>
+            
 
             <button class="btnDelete2" data-id="${product.id}">Eliminar</button>
           </section>

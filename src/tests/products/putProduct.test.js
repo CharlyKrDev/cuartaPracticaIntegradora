@@ -6,14 +6,14 @@ describe("PUT /test/products/:id", () => {
 
   it("debería actualizar un producto existente con status 200", async () => {
     const updatedProduct = {
-      title: "Nuevo Título Actualizado",
+      title: "NO BORRAR PUT",
       description: "Nueva descripción actualizada",
       code: "CODE12345",
       price: 150,
       status: true,
       stock: 20,
       category: "Electrónica",
-      thumbnail: [],
+      thumbnail: ["https://cdn-icons-png.flaticon.com/512/1554/1554591.png"],
     };
 
     const res = await apiRequest
@@ -60,7 +60,7 @@ describe("PUT /test/products/:id", () => {
         price: 200,
         stock: 5,
         category: "Hogar",
-        thumbnail: [],
+        thumbnail: ["https://cdn-icons-png.flaticon.com/512/1554/1554591.png"],
       });
 
     expect(res.status).to.equal(400);

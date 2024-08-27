@@ -7,7 +7,7 @@ dotenv.config();
 export const MAIL_TESTER = process.env.MAIL_TESTER;
 export const PASS_TESTER = process.env.PASS_TESTER;
 export const ID_TEST_INVALID = process.env.ID_TEST_INVALID
-export const ID_TEST_VALID = process.env.ID_TEST_VALID
+export const ID_TEST_VALID = "66ce45bacd68db156d494fd6"
 
 //Products
 export const createTestProduct = async () => {
@@ -18,6 +18,8 @@ export const createTestProduct = async () => {
     price: 100,
     stock: 10,
     category: 'Testing',
+    thumbnail: ["https://cdn-icons-png.flaticon.com/512/1554/1554591.png"],
+
   });
   return product;
 };
