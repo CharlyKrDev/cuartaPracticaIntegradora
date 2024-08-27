@@ -71,9 +71,14 @@ export const getProductsApi = async (req, res) => {
     const productId = req.params.pid;
     try {
       let product;
-  
+
       product = await ProductsDAO.getProductById(productId);
 
+      if(!product){
+
+        res.status(400).json({status:'error', error:'El id no corresponde a ningún producto'});
+
+      }
       res.status(200).json(product);
     } catch (error) {
       res.status(404).json({ error: error.message });

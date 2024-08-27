@@ -1,15 +1,16 @@
-import { createTestProduct, deleteTestProduct } from "../../tests/testUtils.js";
+import { createTestProduct, deleteTestProduct, ID_TEST_INVALID } from "../../tests/testUtils.js";
 import { expect, apiRequest } from '../../tests/testHelper.js';
 
 describe("GET /test/products/:pid", () => {
   let productId;
+  const idInvalid = ID_TEST_INVALID
 
   before(async () => {
     const product = await createTestProduct();
     productId = product._id.toString();
   });
 
-  it("should get a product by ID", async () => {
+  it("Debería devolver producto por ID", async () => {
     const res = await apiRequest
       .get(`/test/products/${productId}`);
       expect(res.status).to.equal(200);
@@ -19,6 +20,14 @@ describe("GET /test/products/:pid", () => {
       expect(res.body).to.have.property("price").that.equals(100);
       expect(res.body).to.have.property("stock").that.equals(10);
       expect(res.body).to.have.property("category").that.equals("Testing");
+  });
+
+  it("Debería devolver error 400 por producto inexistente", async () => {
+    const res = await apiRequest
+      .get(`/test/products/${idInvalid}`);
+      expect(res.status).to.equal(400);
+      expect(res.body).to.have.property('error').that.is.a('string');
+
   });
 
   after(async () => {

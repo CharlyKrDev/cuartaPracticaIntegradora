@@ -21,7 +21,11 @@ export const getCartsApiByIdController = async (req, res) => {
   try {
     const cart = await CartsDAO.getCartById(cid);
 ;
+ if(!cart){
 
+  res.status(400).json({status:'error', error:'El id no corresponde a ningún carrito'});
+
+ }
     // Inicializa el total a 0
     let total = 0;
 

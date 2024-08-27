@@ -1,6 +1,6 @@
-import { expect, apiRequest } from '../../tests/testHelper.js';
-import { createTestProduct, deleteTestProduct } from "../../tests/testUtils.js";
-import { ID_TEST_INVALID } from '../../tests/testUtils.js';
+import { expect, apiRequest } from '../testHelper.js';
+import { createTestProduct} from "../testUtils.js";
+import { ID_TEST_INVALID } from '../testUtils.js';
 describe('DELETE test/products/:pid', () => {
   let productId;
 
