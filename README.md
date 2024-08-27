@@ -337,6 +337,144 @@ export const generateProductCreationErrorInfo = (productDetails) => {
 
 ![image](https://github.com/user-attachments/assets/4983034c-d1e8-49d7-a604-3166b8887879)
 
+## Swagger
+![image](https://github.com/user-attachments/assets/724c59b7-94b9-414b-a299-1fa37aed8de3)
+
+### La implementación de Swagger permitió documentar el proyecto de manera efectiva, con un enfoque en los productos y carritos, lo que garantiza que sea organizado, sostenible a largo plazo y escalable.
+![image](https://github.com/user-attachments/assets/8065b65a-73e4-43cb-ad4e-716c0605372e)
+![image](https://github.com/user-attachments/assets/f5672b80-dd65-4c32-86f5-49f6b1890b22)
+![image](https://github.com/user-attachments/assets/85ecf5f6-7d85-4895-a55f-df797ec82521)
+![image](https://github.com/user-attachments/assets/c65afc9e-a6fe-4a6b-b643-80dfdc2ccbec)
+![image](https://github.com/user-attachments/assets/7cfc6ed9-42b5-4c74-9fbd-c4a5dfe09a7e)
+
+## Implementación de SuperTest, Chai y Mocha
+
+### Descripción General
+
+Para garantizar la calidad y confiabilidad del código, hemos implementado un conjunto robusto de pruebas utilizando **SuperTest**, **Chai**, y **Mocha**. Estas herramientas se combinan para proporcionar un entorno de pruebas eficiente y efectivo, permitiendo validar la funcionalidad de las API y asegurar que el comportamiento del sistema sea el esperado.
+
+### Herramientas Utilizadas
+
+#### 1. [Mocha](https://mochajs.org/)
+**Mocha** es un marco de pruebas para JavaScript, flexible y fácil de usar, que se ejecuta en Node.js. Su estructura simple permite escribir y organizar las pruebas de manera coherente, soportando tanto pruebas sincrónicas como asincrónicas.
+
+**Beneficios de Mocha**:
+- **Simplicidad**: Ofrece una sintaxis clara y fácil de entender.
+- **Flexibilidad**: Soporta múltiples estilos de pruebas (TDD, BDD).
+- **Asincronía**: Permite realizar pruebas asincrónicas sin complicaciones.
+
+#### 2. [Chai](https://www.chaijs.com/)
+**Chai** es una biblioteca de aserciones utilizada junto con Mocha. Proporciona una amplia variedad de métodos de aserción que permiten validar los resultados de las pruebas de manera clara y precisa.
+
+**Beneficios de Chai**:
+- **Variedad de Estilos**: Soporta distintos estilos de aserciones como `should`, `expect` y `assert`.
+- **Legibilidad**: Las aserciones son intuitivas y fáciles de leer.
+- **Integración Sencilla**: Se integra perfectamente con Mocha para crear un entorno de pruebas completo.
+
+#### 3. [SuperTest](https://github.com/visionmedia/supertest)
+**SuperTest** es una herramienta que facilita la realización de pruebas HTTP. Permite enviar peticiones HTTP a nuestras API de forma sencilla y validar las respuestas obtenidas.
+
+**Beneficios de SuperTest**:
+- **Facilidad de Uso**: Simplifica el envío de peticiones `GET`, `POST`, `PUT`, `DELETE`, entre otras.
+- **Integración Fluida**: Funciona perfectamente con Mocha y Chai para realizar pruebas de extremo a extremo.
+- **Validación Completa**: Permite verificar los estados HTTP, cabeceras, y cuerpos de respuesta.
+
+### Beneficios de la Implementación
+
+- **Calidad Asegurada**: Con este conjunto de herramientas, se puede garantizar que las API funcionan correctamente bajo diversas condiciones.
+- **Detección Temprana de Errores**: Las pruebas automatizadas permiten identificar y corregir errores en etapas tempranas del desarrollo.
+- **Documentación Viva**: Las pruebas sirven como documentación viva del comportamiento esperado del sistema, facilitando la comprensión y el mantenimiento.
+- **Escalabilidad**: A medida que el proyecto crece, estas herramientas aseguran que las nuevas funcionalidades no rompan las existentes.
+
+### Ejemplo de Implementación
+
+```javascript
+import { expect, apiRequest } from "../../tests/testHelper.js";
+import { ID_TEST_INVALID, deleteTestProduct, createTestProductPut } from "../../tests/testUtils.js";
+
+describe("PUT /test/products/:id", () => {
+  let productId
+  let updatedProduct
+
+  before(async () => {
+    const product = await createTestProductPut();
+    productId = product._id.toString()
+    updatedProduct = product
+  });
+
+  it("debería actualizar un producto existente con status 200", async () => {
+
+    const res = await apiRequest
+      .put(`/test/products/${productId}`)
+      .send(updatedProduct);
+
+    expect(res.status).to.equal(200);
+
+    expect(res.body).to.have.property("status", "success");
+
+    expect(res.body.payload).to.include({
+      title: updatedProduct.title,
+      description: updatedProduct.description,
+      code: updatedProduct.code,
+      price: updatedProduct.price,
+      status: updatedProduct.status,
+      stock: updatedProduct.stock,
+      category: updatedProduct.category,
+    });
+
+
+  });
+
+
+
+  it("debería devolver un error 404 si el producto no existe", async () => {
+    const nonExistentProductId = ID_TEST_INVALID; 
+
+    const res = await apiRequest
+      .put(`/test/products/${nonExistentProductId}`)
+      .send({
+        title: "Producto que no existe",
+        code: "CODE12345",
+      });
+
+    expect(res.status).to.equal(404);
+
+    expect(res.body).to.have.property("error", "Producto no encontrado");
+  });
+
+
+
+  it("debería devolver un error 400 si el código ya existe en otro producto", async () => {
+    const res = await apiRequest
+      .put(`/test/products/${productId}`)
+      .send({
+        title: "Producto con código duplicado",
+        description: "Descripción del producto duplicado",
+        code: "alfcap1", 
+        price: 200,
+        stock: 5,
+        category: "Hogar",
+        thumbnail: ["https://cdn-icons-png.flaticon.com/512/1554/1554591.png"],
+      });
+
+    expect(res.status).to.equal(400);
+
+    expect(res.body).to.have.property("status", "error");
+
+    expect(res.body).to.have.property("message", "El código ya existe en otro producto");
+  });
+
+  after(async () => {
+    try {
+      await deleteTestProduct(productId);
+    } catch (error) {
+      console.error('Error al eliminar el producto de prueba:', error);
+    }
+  });
+
+});
+```
+
 
 
 #### El proyecto actualmente esta en desarrollo.
