@@ -474,6 +474,8 @@ describe("PUT /test/products/:id", () => {
 
 });
 ```
+![image](https://github.com/user-attachments/assets/8c2cfa56-97ad-45b1-a44f-3b66975aee91)
+
 
 
 
