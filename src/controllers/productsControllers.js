@@ -102,6 +102,33 @@ export const getProductsApi = async (req, res) => {
   }
 
   export const addProductApi = async (req, res) => {
+    const {
+      title,
+      description,
+      code,
+      price,
+      status,
+      stock,
+      category,
+      thumbnail,
+      owner,
+    } = req.body;
+  
+    try {
+      const checkedCode = await ProductsDAO.getProductByCode({ code });
+      if (checkedCode.length !== 0) {
+        return res.status(400).json({ status: "error", message: "El código ya existe en otro producto" });
+      }
+    
+      await ProductsDAO.createProduct( req.body);
+  
+      res.status(200).json({ status: "success", message: `Producto creado correctamente`, payload: req.body });
+    } catch (error) {
+      res.status(500).json({ status: "error", message: error.message });
+    }
+  };
+
+  export const updateProductApi = async (req, res) => {
     const productId = req.params.pid;
     const {
       title,
@@ -112,59 +139,53 @@ export const getProductsApi = async (req, res) => {
       stock,
       category,
       thumbnail,
+      owner
     } = req.body;
   
     try {
-      let checkId = await ProductsDAO.getProductById(productId);
-      if (!checkId) {
-        return res
-          .status(404)
-          .json({ status: "error", message: `No se encontró ningún producto con el ID ${productId}` });
+      // Verifica si el producto existe por su ID
+      const existingProduct = await ProductsDAO.getProductById(productId);
+      if (!existingProduct) {
+        return res.status(404).json({ error: "Producto no encontrado" });
       }
   
-      let checkCode = await ProductsDAO.getProductByCode({ code: code });
+      // Verifica si se está intentando actualizar el código y si ya existe en otro producto
+      if (code && code !== existingProduct.code) {
+        const checkedCode = await ProductsDAO.getProductByCode({ code });
   
-      if (checkCode.length > 0) {
-        return res.status(400).json({ status: "error", message: "Code existente" });
+        // Si existe un producto con el mismo código y no es el producto que se está actualizando
+        if (checkedCode.length > 0 && checkedCode[0]._id.toString() !== productId) {
+          return res.status(400).json({ status: "error", message: "El código ya existe en otro producto" });
+        }
       }
   
-      await ProductsDAO.updateOneProduct(productId, req.body);
+      // Actualiza el producto con los campos proporcionados en req.body
+      const updatedFields = {
+        ...(title && { title }),
+        ...(description && { description }),
+        ...(code && { code }),
+        ...(price && { price }),
+        ...(status !== undefined && { status }),
+        ...(stock && { stock }),
+        ...(category && { category }),
+        ...(thumbnail && { thumbnail }),
+        ...(owner && { owner }),
+      };
   
-      res.status(200).json({ status: "success", message: `Producto actualizado correctamente`, payload: req.body });
-    } catch (error) {
-      res.status(500).json({ status: "error", message: error.message });
-    }
-  };
-
-  export const updateProductApi = async (req, res) => {
-    const {
-      title,
-      description,
-      code,
-      price,
-      status,
-      stock,
-      category,
-      thumbnail,
-    } = req.body;
+      const updatedProduct = await ProductsDAO.updateOneProduct(productId, updatedFields);
   
-    try {
-      // Busca un producto con el mismo código
-      let checkCode = await ProductsDAO.getProductByCode({ code });
-  
-      if (checkCode) {
-        return res.status(400).json({ error: "Code existente" });
+      if (updatedProduct.nModified === 0) {
+        return res.status(304).json({ status: "error", message: "No se realizaron cambios en el producto" });
       }
-  
-      const newProduct = await ProductsDAO.createProduct(req.body);
   
       res.status(200).json({
         status: "success",
-        Producto: newProduct,
-        message: `Producto cargado correctamente`,
+        message: "Producto actualizado correctamente",
+        payload: await ProductsDAO.getProductById(productId),
       });
+  
     } catch (error) {
-      res.status(500).json({status: "error", error: error.message });
+      console.error("Error en updateProductApi:", error);
+      res.status(500).json({ status: "error", error: error.message });
     }
   };
-  

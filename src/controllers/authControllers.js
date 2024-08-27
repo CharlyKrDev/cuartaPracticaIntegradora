@@ -24,7 +24,7 @@ export const githubAuth = (req, res) => {
   
   export const register = (req, res) => {
     logger.info("Usuario registrado");
-    res.redirect('/register');
+    res.redirect('/current');
   };
   
   export const failRegister = (req, res) => {
@@ -110,14 +110,13 @@ export const githubAuth = (req, res) => {
         role: req.user.role,
         cart: req.user.cart,
       };
-      res.redirect('/current');
+      res.status(302).redirect('/current');
     } catch (err) {
-      res.status(500).send('Error al iniciar sesión');
-    }
+      res.status(500).send({ status: "error", error: 'Error al iniciar sesión' });    }
   };
   
   export const failLoginApi = (req, res) => {
-    res.send({ error: "Login fallido" });
+    res.status(500).send({ status: "error", error: 'Error al iniciar sesión' });
   };
   
   export const logoutApi = (req, res) => {

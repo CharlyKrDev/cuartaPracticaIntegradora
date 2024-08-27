@@ -10,7 +10,7 @@ import {
 export const productsRouterTest = express.Router();
 
 productsRouterTest.get("/", getProductsApi);
-productsRouterTest.get("/:pid",getProductByIdApi);
+productsRouterTest.get("/:pid", getProductByIdApi);
 productsRouterTest.delete("/:pid", deleteProductByIdApi);
-productsRouterTest.put("/:pid",  addProductApi);
-productsRouterTest.post("/",updateProductApi);
+productsRouterTest.put("/:pid", updateProductApi);
+productsRouterTest.post("/", addProductApi);

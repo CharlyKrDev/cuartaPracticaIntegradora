@@ -1,6 +1,6 @@
-import { expect, apiRequest } from '../testHelper.js';
+import { expect, apiRequest } from '../../tests/testHelper.js';
 
-describe('GET /products', () => {
+describe('GET test/products', () => {
   it('debería devolver una lista de productos con status 200', async () => {
     const res = await apiRequest.get('/test/products');
     expect(res.status).to.equal(200);
@@ -16,8 +16,8 @@ describe('GET /products', () => {
   });
 
   it('debería devolver productos paginados correctamente en la primera página', async () => {
-    const limit = 10; // Número de productos por página
-    const page = 1;  // Página a solicitar
+    const limit = 10; 
+    const page = 1;  
 
     const res = await apiRequest
     .get('/test/products')

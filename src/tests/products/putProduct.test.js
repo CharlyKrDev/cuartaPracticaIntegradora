@@ -1,42 +1,72 @@
-import { expect, apiRequest } from "../testHelper.js";
-import { createTestProduct, deleteTestProduct } from "../testUtils.js";
+import { expect, apiRequest } from "../../tests/testHelper.js";
+import { ID_TEST_VALID, ID_TEST_INVALID } from "../../tests/testUtils.js";
 
 describe("PUT /test/products/:id", () => {
-  let productId;
+  const productId = ID_TEST_VALID;
 
-  // Antes de cada prueba, crear un producto de prueba
-  before(async () => {
-    const product = await createTestProduct();
-    productId = product._id.toString();
-  });
-
-  it("debe actualizar un producto", async () => {
+  it("debería actualizar un producto existente con status 200", async () => {
     const updatedProduct = {
-      title: "Nuevo Título de Producto",
-      description: "Nueva descripción del producto",
-      price: 29.99,
-      stock: 15,
+      title: "Nuevo Título Actualizado",
+      description: "Nueva descripción actualizada",
+      code: "CODE12345",
+      price: 150,
+      status: true,
+      stock: 20,
+      category: "Electrónica",
+      thumbnail: [],
     };
 
     const res = await apiRequest
       .put(`/test/products/${productId}`)
       .send(updatedProduct);
 
-    // Verifica que el status de la respuesta sea 200
     expect(res.status).to.equal(200);
 
-    // Verifica que la respuesta tenga la propiedad "status" y sea "success"
     expect(res.body).to.have.property("status", "success");
 
-    // Verifica que la respuesta tenga un payload con el título actualizado
-    expect(res.body.payload).to.have.property("title", "Nuevo Título de Producto");
+    expect(res.body.payload).to.include({
+      title: updatedProduct.title,
+      description: updatedProduct.description,
+      code: updatedProduct.code,
+      price: updatedProduct.price,
+      status: updatedProduct.status,
+      stock: updatedProduct.stock,
+      category: updatedProduct.category,
+    });
   });
 
-  after(async () => {
-    try {
-      await deleteTestProduct(productId);
-    } catch (error) {
-      console.error("Error al eliminar el producto de prueba:", error);
-    }
+  it("debería devolver un error 404 si el producto no existe", async () => {
+    const nonExistentProductId = ID_TEST_INVALID; 
+
+    const res = await apiRequest
+      .put(`/test/products/${nonExistentProductId}`)
+      .send({
+        title: "Producto que no existe",
+        code: "CODE12345",
+      });
+
+    expect(res.status).to.equal(404);
+
+    expect(res.body).to.have.property("error", "Producto no encontrado");
+  });
+
+  it("debería devolver un error 400 si el código ya existe en otro producto", async () => {
+    const res = await apiRequest
+      .put(`/test/products/${productId}`)
+      .send({
+        title: "Producto con código duplicado",
+        description: "Descripción del producto duplicado",
+        code: "EXISTING_CODE", 
+        price: 200,
+        stock: 5,
+        category: "Hogar",
+        thumbnail: [],
+      });
+
+    expect(res.status).to.equal(400);
+
+    expect(res.body).to.have.property("status", "error");
+
+    expect(res.body).to.have.property("message", "El código ya existe en otro producto");
   });
 });
