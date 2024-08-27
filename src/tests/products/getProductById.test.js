@@ -10,7 +10,6 @@ describe("GET /test/products/:pid", () => {
     const product = await createTestProduct();
     productId = product._id.toString();
     productCode = product.code;
-    console.log(`probando id get: ${productId}`)
 
   });
 
@@ -36,7 +35,6 @@ describe("GET /test/products/:pid", () => {
 
   after(async () => {
     try {
-      console.log(`code get:${productId}`)
       await deleteTestProduct(productId);
     } catch (error) {
       console.error('Error al eliminar el producto de prueba:', error);
