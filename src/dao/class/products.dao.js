@@ -46,6 +46,10 @@ class ProductsDAO {
     await productsModel.deleteOne({ _id: productId });
   }
 
+  async deleteProductByCode(productCode) {
+    await productsModel.deleteOne({code: productCode });
+  }
+
   async getTotalProductsCount() {
     return await productsModel.countDocuments();
   }

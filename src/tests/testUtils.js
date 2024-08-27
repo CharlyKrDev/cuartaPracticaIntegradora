@@ -12,7 +12,7 @@ export const ID_TEST_VALID = "66ce45bacd68db156d494fd6"
 //Products
 export const createTestProduct = async () => {
   const product = await ProductsDAO.createProduct({
-    title: 'Test Product',
+    title: 'Test Product GET',
     description: 'Un producto para test',
     code: 'TEST123',
     price: 100,
@@ -24,8 +24,55 @@ export const createTestProduct = async () => {
   return product;
 };
 
+export const createTestProductPost = async () => {
+  const product = await ProductsDAO.createProduct({
+    title: 'Test Product POST',
+    description: 'Un producto para test',
+    code: 'TEST123',
+    price: 100,
+    stock: 10,
+    category: 'Testing',
+    thumbnail: ["https://cdn-icons-png.flaticon.com/512/1554/1554591.png"],
+
+  });
+  return product;
+};
+
+export const createTestProductDelete = async () => {
+  const product = await ProductsDAO.createProduct({
+    title: 'Test Product DELETE',
+    description: 'Un producto para test',
+    code: 'TESTDELETE123',
+    price: 100,
+    stock: 10,
+    category: 'Testing',
+    thumbnail: ["https://cdn-icons-png.flaticon.com/512/1554/1554591.png"],
+
+  });
+  return product;
+};
+
+export const createTestProductPut = async () => {
+  const product = await ProductsDAO.createProduct({
+    title: 'Test Product PUT',
+    description: 'Un producto para test',
+    code: 'TESTPUT123',
+    price: 100,
+    stock: 10,
+    category: 'Testing',
+    thumbnail: ["https://cdn-icons-png.flaticon.com/512/1554/1554591.png"],
+
+  });
+  return product;
+}
+
+
 export const deleteTestProduct = async (productId) => {
   await ProductsDAO.deleteProductById(productId);
+};
+
+export const deleteTestProductCode = async (productCode) => {
+  await ProductsDAO.deleteProductByCode(productCode);
 };
 
 export const generateRandomCode = () => {

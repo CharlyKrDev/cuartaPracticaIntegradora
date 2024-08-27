@@ -1,20 +1,17 @@
 import { expect, apiRequest } from "../../tests/testHelper.js";
-import { ID_TEST_VALID, ID_TEST_INVALID } from "../../tests/testUtils.js";
+import { ID_TEST_INVALID, deleteTestProduct, createTestProductPut } from "../../tests/testUtils.js";
 
 describe("PUT /test/products/:id", () => {
-  const productId = ID_TEST_VALID;
+  let productId
+  let updatedProduct
+
+  before(async () => {
+    const product = await createTestProductPut();
+    productId = product._id.toString()
+    updatedProduct = product
+  });
 
   it("debería actualizar un producto existente con status 200", async () => {
-    const updatedProduct = {
-      title: "NO BORRAR PUT",
-      description: "Nueva descripción actualizada",
-      code: "CODE12345",
-      price: 150,
-      status: true,
-      stock: 20,
-      category: "Electrónica",
-      thumbnail: ["https://cdn-icons-png.flaticon.com/512/1554/1554591.png"],
-    };
 
     const res = await apiRequest
       .put(`/test/products/${productId}`)
@@ -33,7 +30,11 @@ describe("PUT /test/products/:id", () => {
       stock: updatedProduct.stock,
       category: updatedProduct.category,
     });
+
+
   });
+
+
 
   it("debería devolver un error 404 si el producto no existe", async () => {
     const nonExistentProductId = ID_TEST_INVALID; 
@@ -50,13 +51,15 @@ describe("PUT /test/products/:id", () => {
     expect(res.body).to.have.property("error", "Producto no encontrado");
   });
 
+
+
   it("debería devolver un error 400 si el código ya existe en otro producto", async () => {
     const res = await apiRequest
       .put(`/test/products/${productId}`)
       .send({
         title: "Producto con código duplicado",
         description: "Descripción del producto duplicado",
-        code: "EXISTING_CODE", 
+        code: "alfcap1", 
         price: 200,
         stock: 5,
         category: "Hogar",
@@ -69,4 +72,13 @@ describe("PUT /test/products/:id", () => {
 
     expect(res.body).to.have.property("message", "El código ya existe en otro producto");
   });
+
+  after(async () => {
+    try {
+      await deleteTestProduct(productId);
+    } catch (error) {
+      console.error('Error al eliminar el producto de prueba:', error);
+    }
+  });
+
 });

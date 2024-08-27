@@ -1,11 +1,11 @@
 import { expect, apiRequest } from '../testHelper.js';
-import { createTestProduct} from "../testUtils.js";
+import { createTestProductDelete} from "../testUtils.js";
 import { ID_TEST_INVALID } from '../testUtils.js';
 describe('DELETE test/products/:pid', () => {
   let productId;
 
   before(async () => {
-    const product = await createTestProduct();
+    const product = await createTestProductDelete();
     productId = product._id.toString();
   });
 
