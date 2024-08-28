@@ -1,4 +1,5 @@
 import logger from "../config/loggerConfig.js";
+import UsersDAO from "../dao/class/users.dao.js";
 
 export const githubAuth = (req, res) => {
     // The passport.authenticate middleware handles the GitHub authentication process
@@ -8,7 +9,11 @@ export const githubAuth = (req, res) => {
     if (!req.user) return res.status(400).send({ status: "error", error: "Datos incompletos" });
   
     try {
+      const lastConnection = new Date()
+      let userId
+
       req.session.user = {
+        _id: req.user._id,
         first_name: req.user.first_name,
         last_name: req.user.last_name,
         email: req.user.email,
@@ -16,6 +21,11 @@ export const githubAuth = (req, res) => {
         role: req.user.role,
         cart: req.user.cart,
       };
+      userId = req.session.user._id
+      console.log(userId)
+      console.log(lastConnection)
+      await UsersDAO.updateLastUserConnection(userId, lastConnection)
+
       res.redirect('/current');
     } catch (err) {
       res.status(500).send('Error al iniciar sesión');
@@ -36,7 +46,11 @@ export const githubAuth = (req, res) => {
     if (!req.user) return res.status(400).send({ status: "error", error: "Datos incompletos" });
   
     try {
+      const lastConnection = new Date()
+      let userId
+
       req.session.user = {
+        _id: req.user._id,
         first_name: req.user.first_name,
         last_name: req.user.last_name,
         email: req.user.email,
@@ -44,6 +58,8 @@ export const githubAuth = (req, res) => {
         role: req.user.role,
         cart: req.user.cart,
       };
+      userId = req.session.user._id
+      await UsersDAO.updateLastUserConnection(userId, lastConnection)
       logger.info(`Ingreso de usuario correcto ${req.session.user.email}`)
       res.redirect('/current');
     } catch (err) {
@@ -75,7 +91,11 @@ export const githubAuth = (req, res) => {
     if (!req.user) return res.status(400).send({ status: "error", error: "Datos incompletos" });
   
     try {
+      const lastConnection = new Date()
+      let userId
+
       req.session.user = {
+        _id: req.user._id,
         first_name: req.user.first_name,
         last_name: req.user.last_name,
         email: req.user.email,
@@ -83,6 +103,8 @@ export const githubAuth = (req, res) => {
         role: req.user.role,
         cart: req.user.cart,
       };
+      userId = req.session.user._id
+      await UsersDAO.updateLastUserConnection(userId, lastConnection)
       res.redirect('/current');
     } catch (err) {
       res.status(500).send('Error al iniciar sesión');

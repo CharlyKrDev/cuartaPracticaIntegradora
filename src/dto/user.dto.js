@@ -9,6 +9,10 @@ export class UserDTO {
         this.cart = user.cart || null;
         this.tickets = user.tickets || [];
         this.role = user.role || "user";
+        this.resetPasswordToken = user.resetPasswordToken || "";
+        this.resetTokenExpiration = user.resetTokenExpiration || "";
+        this.last_connection = user.last_connection || "";
+        this.documents = user.documents || {}
     }
 }
 

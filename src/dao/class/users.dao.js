@@ -17,6 +17,10 @@ class UsersDAO {
     return new UserDTO(user);
   }
 
+  async updateLastUserConnection(userId, updateData){
+    await userModel.updateOne({ _id: userId }, { last_connection: updateData });
+  }
+
   async updateUserCart(userId, cartId) {
     await userModel.updateOne({ _id: userId }, { cart: cartId });
     const user = await userModel.findById(userId).lean();
