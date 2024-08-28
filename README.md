@@ -365,7 +365,7 @@ describe("PUT /test/products/:id", () => {
 
 
 
-### El proyecto está en continuo desarrollo, incluyendo refactorizaciones y mejoras en la arquitectura, como la implementación de DAO, DTO, servicios, controladores, y la biblioteca de errores. Además, se ha implementado la generación de tickets por compras, recuperación de contraseñas por email, documentación con Swagger y plataforma de pago.
+##### El proyecto está en continuo desarrollo, incluyendo refactorizaciones y mejoras en la arquitectura, como la implementación de DAO, DTO, servicios, controladores, y la biblioteca de errores. Además, se ha implementado la generación de tickets por compras, recuperación de contraseñas por email, documentación con Swagger y plataforma de pago.
 
 # Gracias por tu tiempo!
 
