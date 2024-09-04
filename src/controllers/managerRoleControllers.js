@@ -1,4 +1,5 @@
 import usersDAO from "../dao/class/users.dao.js";
+import { updateUserRole } from "../services/usersUpdateRole.js";
 
 // Endpoint para renderizar la plantilla
 export const renderRoleUsersApiController = async (req, res) => {
@@ -54,3 +55,19 @@ export const managerRoleUsersApiController = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+// Gestión de documentos para cambio de rol
+
+export const updateRole = async (req, res) => {
+  const userId = req.params.uid
+  const profileRole = req.body
+  const file = req.file
+
+  try {
+      await updateUserRole(userId, profileRole, file)
+      res.redirect('/profile?success=Su rol ha sido actualizado.')
+  } catch (error) {
+      console.error('Error al actualizar el rol:', error)
+      res.redirect('/profile?error=' + encodeURIComponent(error.message))
+  }
+}

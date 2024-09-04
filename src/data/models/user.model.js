@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   role: { type: String, default: "user" },
   resetPasswordToken: String,
   resetTokenExpiration: Date,
-  documents: { name: String, reference: String },
+  documents: [{ name: String, reference: String }],
   last_connection:String
 });
 

@@ -121,4 +121,7 @@ export const resetPassword = async (req, res) => {
   } catch (error) {
     res.status(500).send("Ha surgido un error con el reset de la password");
   }
+
+  
 };
+
