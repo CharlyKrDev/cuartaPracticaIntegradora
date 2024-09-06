@@ -1,8 +1,9 @@
 
-<h1>Quinta PreEntrega BackEnd CoderHouse 2024</h1>
+<h1>Proyecto Final BackEnd CoderHouse 2024</h1>
 
-
-## por Carlos A Kaar
+## de Carlos A Kaar
+## Docente Omar Mainas
+## Tutor David 
 
 ![image](https://github.com/CharlyKrDev/preEntregaBackEnd-Kaar-Carlos/assets/123911937/8d8d3140-c4f7-4dd9-aaab-2e4e713bba7f)
 
