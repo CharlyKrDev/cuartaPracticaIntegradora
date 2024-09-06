@@ -53,6 +53,14 @@ class UsersDAO {
       .lean();
   }
 
+  async getUsersApi() {
+    return await userModel.find().lean();
+  }
+
+  async deleteUserById(userId) {
+    await userModel.findByIdAndDelete(userId);
+  }
+  
   async updateUserPassword(userId, hashedPassword) {
     await userModel.updateOne(
       { _id: userId },
