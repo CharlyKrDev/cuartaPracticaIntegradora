@@ -1,6 +1,7 @@
 import productsDAO from "../dao/class/products.dao.js";
 import usersDAO from "../dao/class/users.dao.js";
 import logger from "../config/loggerConfig.js";
+import { sendDeleteProductEmail } from "../utils/mail/mailing.js";
 
 export const handleConnection = async (socket) => {
   const userEmail = socket.handshake.session.user.email;
@@ -66,10 +67,11 @@ export const handleDeleteProduct = async (
   productId,
   email
 ) => {
-  const userEmail = email
+  const userEmail = email;
   try {
     const user = await usersDAO.getUserByEmail(email);
     const product = await productsDAO.getProductById(productId);
+    const productOwnerEmail = product.owner;
     // Validación de la existencia del usuario y producto
     if (!user) {
       return socket.emit("error", { message: "El usuario no existe" });
@@ -83,10 +85,17 @@ export const handleDeleteProduct = async (
       user.role === "premium" ||
       user.role === "adminMaster"
     ) {
+      let userOwner = productOwnerEmail; 
+      const userOwnerFind = await usersDAO.getUserByEmail(productOwnerEmail);
+      if (userOwnerFind) {
+        userOwner = userOwnerFind; 
+      }      
       if (user.email === product.owner || user.role === "admin") {
         await productsDAO.deleteProductById(productId);
+        await sendDeleteProductEmail(userOwner, product, user);
         if (user.role === "premium") {
           const products = await productsDAO.findProducts();
+          await sendDeleteProductEmail(userOwner, product, user);
 
           const productsOwner = products.filter(
             (product) => product.owner === userEmail

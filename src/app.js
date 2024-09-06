@@ -29,6 +29,7 @@ import SwaggerUiExpress from "swagger-ui-express"
 import { productsRouterTest } from "./routes/test/productsRoutersTest.js";
 import cartsRouterTest from "./routes/test/cartsRouterTest.js";
 import sessionsRouterTest from './routes/test/sessionsRoutersTest.js'
+import userRouterApi from "./routes/api/usersRourterApi.js";
 export const app = express();
 const PORT = 8080;
 const httpServer = app.listen(
@@ -74,6 +75,8 @@ app.use("/api/carts", cartsRouterApiM);
 app.use("/api/products", productsRouterApi);
 app.use("/api/mockingproducts", mockerProductsApi)
 app.use("/", managerRoleApi )
+app.use("/api/users", userRouterApi )
+
 
 // Tests
 
