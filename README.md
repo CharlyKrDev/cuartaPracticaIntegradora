@@ -3,11 +3,7 @@
 ## de Carlos Alberto Kaar <a href="https://www.linkedin.com/in/carlos-alberto-kaar/" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" alt="My LinkedIn" width="30" height="30"></a>
 
 ## Profesor: Omar Jesús Maniás <a href="https://www.linkedin.com/in/omar-jesus-manias/" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn" width="30" height="30"></a> <a href="https://github.com/omanias" target="_blank"><img src="https://skillicons.dev/icons?i=github" alt="GitHub" width="30" height="30"></a>
-## Tutor: David Alvarez [![LinkedIn](https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo_2013.png)](https://www.linkedin.com/in/ale-david-alvarez/)
-
-[![GitHub](https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg)](https://github.com/aalvag/aalvag)
-
-
+## Tutor: David Alvarez <a href="https://www.linkedin.com/in/ale-david-alvarez/" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn" width="30" height="30"></a> <a href="https://github.com/aalvag/aalvag" target="_blank"><img src="https://skillicons.dev/icons?i=github" alt="GitHub" width="30" height="30"></a>
 
 ![image](https://github.com/CharlyKrDev/preEntregaBackEnd-Kaar-Carlos/assets/123911937/8d8d3140-c4f7-4dd9-aaab-2e4e713bba7f)
 
