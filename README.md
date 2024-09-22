@@ -20,7 +20,7 @@ Para clonar este repositorio en tu máquina local, abre una terminal o línea de
 
 Una vez clonado el repositorio, navega al directorio del repositorio clonado:
 
-    cd tu-repositorio <-- en el que hayas clonado mi repertorio
+    cd tu-repositorio <-- en el que hayas clonado mi repositorio
 
 ### 3. Instalar las Dependencias
 
