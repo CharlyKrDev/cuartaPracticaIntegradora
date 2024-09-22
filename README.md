@@ -1,12 +1,9 @@
 <h1>Proyecto Final BackEnd CoderHouse 2024</h1>
 
-## de Carlos Alberto Kaar
+## de Carlos Alberto Kaar <a href="https://www.linkedin.com/in/carlos-alberto-kaar/" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" alt="My LinkedIn" width="30" height="30"></a>
 
-## Docente Omar Jesús Maniás [![LinkedIn](https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo_2013.png)](https://www.linkedin.com/in/omar-jesus-manias/)
-
-[![GitHub](https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg)](https://github.com/omanias)
-
-## Tutor David Alvarez [![LinkedIn](https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo_2013.png)](https://www.linkedin.com/in/ale-david-alvarez/)
+## Profesor: Omar Jesús Maniás <a href="https://www.linkedin.com/in/omar-jesus-manias/" target="_blank"> <img src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn" width="30" height="30"></a> <a href="https://github.com/omanias" target="_blank"><img src="https://skillicons.dev/icons?i=github" alt="GitHub" width="30" height="30"></a>
+## Tutor: David Alvarez [![LinkedIn](https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo_2013.png)](https://www.linkedin.com/in/ale-david-alvarez/)
 
 [![GitHub](https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg)](https://github.com/aalvag/aalvag)
 
@@ -15,6 +12,49 @@
 ![image](https://github.com/CharlyKrDev/preEntregaBackEnd-Kaar-Carlos/assets/123911937/8d8d3140-c4f7-4dd9-aaab-2e4e713bba7f)
 
 ##### Este proyecto consiste en el desarrollo de un eCommerce con sistema CRUD, desarrollado en Node.js. A continuación, se detallan las dependencias y herramientas utilizadas, así como ejemplos de código implementado.
+## Instrucciones para Clonar y Configurar el Repositorio
+
+### 1. Clonar el Repositorio
+
+Para clonar este repositorio en tu máquina local, abre una terminal o línea de comandos y ejecuta el siguiente comando:
+
+    git clone https://github.com/CharlyKrDev/cuartaPracticaIntegradora
+
+### 2. Navegar al Directorio del Repositorio
+
+Una vez clonado el repositorio, navega al directorio del repositorio clonado:
+
+    cd tu-repositorio <-- en el que hayas clonado mi repertorio
+
+### 3. Instalar las Dependencias
+
+Para instalar las dependencias necesarias para el proyecto, asegúrate de tener [Node.js](https://nodejs.org/) y [npm](https://www.npmjs.com/) (el gestor de paquetes de Node.js) instalados en tu máquina. Luego, ejecuta el siguiente comando:
+
+    npm install o pnpm install
+
+Este comando instalará todas las dependencias listadas en el archivo `package.json` del proyecto.
+
+### 4. Ejecutar el Proyecto
+
+Dependiendo de la configuración del proyecto, puedes iniciar el servidor o la aplicación con uno de los siguientes comandos:
+
+    npm start o pnpm start <--- Para arrancar la aplicación principal
+
+o
+
+    npm run test o pnpm run test <--- Para arrancar en modo test
+
+### 5. Acceder a la Aplicación
+
+Una vez que el proyecto esté en ejecución, abre un navegador web y navega a la dirección local del servidor, que generalmente es:
+
+    http://localhost:8080/products
+
+### 6. Consultar la Documentación
+
+Puedes encontrar la documentación en la siguiente dirección local:
+
+    http://localhost:8080/api/docs
 
 ## Dependencias Utilizadas :
 
