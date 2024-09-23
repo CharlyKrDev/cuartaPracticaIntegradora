@@ -34,7 +34,7 @@ export const app = express();
 const PORT = 8080;
 const httpServer = app.listen(
   PORT,
-  logger.info(`Server running on port: http://localhost:${PORT}/products`)
+  logger.info(`Server running on port: https://proyectofinalbackend-2024.up.railway.app/products`)
 );
 const socketServer = new Server(httpServer);
 

@@ -50,7 +50,7 @@ export const requestPasswordReset = async (req, res) => {
       subject: "Password Reset",
       text: `Está recibiendo esto porque usted (u otra persona) ha solicitado el restablecimiento de la contraseña de su cuenta.\n\n
         Haga clic en el siguiente enlace o péguelo en su navegador para completar el proceso en el plazo de una hora tras recibirlo:\n\n
-        http://localhost:8080/password-reset/${token}\n\n
+        https://proyectofinalbackend-2024.up.railway.app/password-reset/${token}\n\n
         Si no lo ha solicitado, ignore este correo electrónico y su contraseña permanecerá inalterada.\n`,
     };
 
