@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
           // Si la solicitud se completó correctamente, mostrar un mensaje de éxito y redirigir a la página de productos
           alert(`Carrito eliminado`);
-          window.location.href = "https://proyectofinalbackend-2024.up.railway.app/products";
+          window.location.href = "/products";
         } else {
           // Si hubo un error, mostrar un mensaje de error
           alert(`Error al eliminar el carrito: ${result.message}`);

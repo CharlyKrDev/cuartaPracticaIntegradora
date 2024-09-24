@@ -25,10 +25,10 @@ export const getHomePage = async (req, res) => {
       });
     }
     const prevLink = products.hasPrevPage
-      ? `https://proyectofinalbackend-2024.up.railway.app/products/?page=${products.prevPage}&limit=${products.limit}`
+      ? `/products/?page=${products.prevPage}&limit=${products.limit}`
       : "";
     const nextLink = products.hasNextPage
-      ? `https://proyectofinalbackend-2024.up.railway.app/products/?page=${products.nextPage}&limit=${products.limit}`
+      ? `/products/?page=${products.nextPage}&limit=${products.limit}`
       : "";
     const isValid = !(products.page <= 0 || products.page > products.totalPages);
     res.render("home", {
