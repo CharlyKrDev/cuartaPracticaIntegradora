@@ -1,13 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  document
-    .getElementById("updateRoleBtn")
-    .addEventListener("click", async (e) => {
+  const updateRoleBtn = document.getElementById("updateRoleBtn");
+  if (updateRoleBtn) {
+    updateRoleBtn.addEventListener("click", async (e) => {
       e.preventDefault();
 
       const emailElement = document.getElementById("userEmail");
-      const email = emailElement
-        ? emailElement.innerText.split(":")[1].trim()
-        : null;
+      const email = emailElement ? emailElement.innerText.split(":")[1].trim() : null;
       const newRole = document.getElementById("newRole").value.toLowerCase();
 
       if (!email || !newRole) {
@@ -36,19 +34,26 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error:", error);
       }
     });
+  }
 
-  document
-    .getElementById("deleteUserBtn")
-    .addEventListener("click", async (e) => {
+  const deleteUserBtn = document.getElementById("deleteUserBtn");
+  if (deleteUserBtn) {
+    deleteUserBtn.addEventListener("click", async (e) => {
       e.preventDefault();
+
       const confirmed = window.confirm(
-        "Seguro que desea eliminar este usuario? Luego no hay marcha atrás"
+        "¿Seguro que desea eliminar este usuario? Luego no hay marcha atrás."
       );
       if (!confirmed) return;
+
       const emailElement = document.getElementById("userEmail");
-      const email = emailElement
-        ? emailElement.innerText.split(":")[1].trim()
-        : null;
+      const email = emailElement ? emailElement.innerText.split(":")[1].trim() : null;
+
+      if (!email) {
+        alert("No se pudo obtener el email del usuario. Intenta nuevamente.");
+        return;
+      }
+
       try {
         const response = await fetch(`/dashboardUsers/${email}`, {
           method: "DELETE",
@@ -57,22 +62,19 @@ document.addEventListener("DOMContentLoaded", () => {
           },
         });
         const result = await response.json();
+
         if (response.ok) {
-          alert("Usuario eliminado correctamente");
+          alert("Usuario eliminado correctamente.");
           window.location.href = "/dashboardUsersPage";
         } else {
           alert(
-            `Error al querer eliminar usuario: ${
-              result.message || "Error desconocido"
-            }`
+            `Error al eliminar el usuario: ${result.message || "Error desconocido."}`
           );
         }
       } catch (error) {
-        res.status(500).json({
-          status: "Error",
-          message: `Al querer borrar el usuario con mail: ${email}`,
-          error: error.message,
-        });
+        console.error("Error en la eliminación del usuario:", error);
+        alert("Ocurrió un error al intentar eliminar el usuario.");
       }
     });
+  }
 });

@@ -20,9 +20,10 @@ export const renderDashboardUserPage = (req, res) => {
 // Controlador que busca un usuario por email y lo renderiza en la plantilla
 export const dashboardUser = async (req, res) => {
   const { email } = req.query;
+  const userEmail = email.toLowerCase()
 
   try {
-    const user = await UsersDAO.getUserByEmail(email);
+    const user = await UsersDAO.getUserByEmail(userEmail);
 
     if (!user) {
       return res.render("dashboardUsers", {
