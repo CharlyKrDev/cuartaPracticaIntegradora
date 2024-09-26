@@ -22,8 +22,6 @@ export const githubAuth = (req, res) => {
         cart: req.user.cart,
       };
       userId = req.session.user._id
-      console.log(userId)
-      console.log(lastConnection)
       await UsersDAO.updateLastUserConnection(userId, lastConnection)
 
       res.redirect('/current');

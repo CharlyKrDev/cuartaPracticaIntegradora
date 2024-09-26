@@ -34,7 +34,7 @@ export const app = express();
 const PORT = 8080;
 const httpServer = app.listen(
   PORT,
-  logger.info(`Server running on port: https://proyectofinalbackend-2024.up.railway.app/products`)
+  logger.info(`Server running on port: ${PORT} http://localhost:${PORT}/products/ o en https://proyectofinalbackend-2024.up.railway.app/products`)
 );
 const socketServer = new Server(httpServer);
 
@@ -86,7 +86,7 @@ app.use("/test/products", productsRouterTest);
 
 // Views
 app.use("/carts", cartsRouterM);
-app.use("/dashBoardProducts", dashboardProductsRouter);
+app.use("/", dashboardProductsRouter);
 app.use("/messages", messagesRouter);
 app.use("/", homeRouter);
 app.use("/", registerRouter);

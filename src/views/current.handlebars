@@ -7,7 +7,10 @@
         <button><a href="/carts/cart/{{user.cart}}">Ver mi carrito</a></button>
         {{/if}}
         {{#if (or roleAdmin rolePremium)}}
-        <button><a href="/dashBoardProducts">Panel de administrador</a></button>
+        <button><a href="/dashBoardProducts">Panel de productos</a></button>
+        {{/if}}
+        {{#if roleAdmin}}
+        <button><a href="/dashboardUsersPage">Panel de usuarios</a></button>
         {{/if}}
 
 
