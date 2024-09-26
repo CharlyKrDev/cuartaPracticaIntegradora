@@ -36,4 +36,43 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error:", error);
       }
     });
+
+  document
+    .getElementById("deleteUserBtn")
+    .addEventListener("click", async (e) => {
+      e.preventDefault();
+      const confirmed = window.confirm(
+        "Seguro que desea eliminar este usuario? Luego no hay marcha atrás"
+      );
+      if (!confirmed) return;
+      const emailElement = document.getElementById("userEmail");
+      const email = emailElement
+        ? emailElement.innerText.split(":")[1].trim()
+        : null;
+      try {
+        const response = await fetch(`/dashboardUsers/${email}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const result = await response.json();
+        if (response.ok) {
+          alert("Usuario eliminado correctamente");
+          window.location.href = "/dashboardUsersPage";
+        } else {
+          alert(
+            `Error al querer eliminar usuario: ${
+              result.message || "Error desconocido"
+            }`
+          );
+        }
+      } catch (error) {
+        res.status(500).json({
+          status: "Error",
+          message: `Al querer borrar el usuario con mail: ${email}`,
+          error: error.message,
+        });
+      }
+    });
 });
