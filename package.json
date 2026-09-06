@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "cuartapracticaintegradora",
+  "name": "ecommerce-backend-api",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "E-commerce backend API built with Node.js, Express, MongoDB, authentication, layered architecture and automated testing.",
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
     "@nestjs/cli": "^10.4.4",
